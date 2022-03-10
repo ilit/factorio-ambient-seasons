@@ -4,6 +4,6 @@ if not main then main = {} end
 
 function main.ontick()
     if (game) then
-        game.print(seasonprogress.eval())   
+        seasonProgress.exec()
     end
 end
