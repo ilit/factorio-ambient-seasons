@@ -1,14 +1,14 @@
 if not seasonProgress then seasonProgress = {} end
 
-local SEASON_SPEED = 15 --seconds to pass all seasons
+local SEASON_SPEED = 8 --seconds to pass all seasons
 local STEPS_IN_A_YEAR = 12
 local STEP_SIZE = 1 / STEPS_IN_A_YEAR
 
 local lastCompletedStep = -1
 
 function seasonProgress.exec()
-    currentStep = math.floor(evalTime() / STEP_SIZE)
-    if (currentStep > lastCompletedStep) then
+    currentStep = math.floor(evalTime() / STEP_SIZE) % STEPS_IN_A_YEAR
+    if (currentStep ~= lastCompletedStep) then
         executeStep(currentStep)
         lastCompletedStep = currentStep
     end
