@@ -1,0 +1,13 @@
+{
+    "name": "ambient-seasons",
+    "version": "0.0.0",
+    "factorio_version": "1.1",
+    "title": "ambient-seasons TEST",
+    "author": "XlebniDizele4ku",
+    "contact": "ilitvinov87@gmail.com",
+    "homepage": "https://github.com/ilit/factorio-ambient-seasons",
+    "description": "Description",
+    "dependencies": [
+        "alien-biomes"
+    ]
+}
