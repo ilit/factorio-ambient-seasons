@@ -1,16 +1,25 @@
 if not seasonProgress then seasonProgress = {} end
 
-local currentStep = 0
-local steps = 20
+local SEASON_SPEED = 15 --seconds to pass all seasons
+local STEPS_IN_A_YEAR = 12
+local STEP_SIZE = 1 / STEPS_IN_A_YEAR
+
+local lastCompletedStep = -1
 
 function seasonProgress.exec()
-    --game.print(evalTime())
-    game.print(steps)
+    currentStep = math.floor(evalTime() / STEP_SIZE)
+    if (currentStep > lastCompletedStep) then
+        executeStep(currentStep)
+        lastCompletedStep = currentStep
+    end
+end
+
+function executeStep(stepIndex)
+    game.print(stepIndex .. " @time " .. evalTime())
 end
 
 -- 0 to 1 --
 function evalTime()
     local secondsPlayed = game.ticks_played / 60
-    local SEASON_SPEED = 30
-    return (secondsPlayed % SEASON_SPEED) / SEASON_SPEED
+    return secondsPlayed / SEASON_SPEED
 end
