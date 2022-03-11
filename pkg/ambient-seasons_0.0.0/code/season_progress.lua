@@ -6,17 +6,15 @@ local STEP_SIZE = 1 / STEPS_IN_A_YEAR
 
 local lastCompletedStep = -1
 
-function seasonProgress.exec()
+function seasonProgress.onStep(onStepCallback)
     currentStep = math.floor(evalTime() / STEP_SIZE) % STEPS_IN_A_YEAR
     if (currentStep ~= lastCompletedStep) then
-        executeStep(currentStep)
         lastCompletedStep = currentStep
+        onStepCallback(currentStep)
     end
 end
 
-function executeStep(stepIndex)
-    game.print(stepIndex .. " @time " .. evalTime())
-end
+
 
 -- 0 to 1 --
 function evalTime()
