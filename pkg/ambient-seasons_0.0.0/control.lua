@@ -1,19 +1,11 @@
-registerOnTickEvent1 = function(str)
+registerOnTickEvent = function(str)
     script.on_event(defines.events.on_tick, function(event)
-        game.print("111") 
         ontick()
     end)
 end
 
-registerOnTickEvent2 = function(str)
-    script.on_event(defines.events.on_tick, function(event)
-        game.print("222") 
-        ontick()
-    end)
-end
-
-script.on_init(registerOnTickEvent1)
-script.on_load(registerOnTickEvent2)
+script.on_init(registerOnTickEvent)
+script.on_load(registerOnTickEvent)
 
 seasonProgress = require "code/season-progress"
 seasonSurfaceStepExec = require "code/season-step"
