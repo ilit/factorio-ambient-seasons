@@ -18,7 +18,7 @@ end
 
 function months.current()
     local MONTHS_IN_A_YEAR = 12
-    return months.monthsPlayed() % MONTHS_IN_A_YEAR
+    return months.played() % MONTHS_IN_A_YEAR
 end
 
 return months
