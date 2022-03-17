@@ -6,6 +6,7 @@ return function(time)
         --game.print("x: " .. chunk.x .. ", y: " .. chunk.y)
         --game.print("area: " .. serpent.line(chunk.area))
         
-        game.print("time.months.current " .. time.months.current())
+        --game.print(game.ticks_played .. "time.months.current " .. time.months.current())
+        game.print(time.steps.played() - time.steps.playedFloat())
     end
 end

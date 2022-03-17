@@ -9,7 +9,7 @@ function months.init(stepsArg)
 end
 
 function months.playedFloat()
-    return months.steps.playedFloat() / months.STEPS_IN_A_MONTH
+    return months.steps.played() / months.STEPS_IN_A_MONTH
 end
 
 function months.played()

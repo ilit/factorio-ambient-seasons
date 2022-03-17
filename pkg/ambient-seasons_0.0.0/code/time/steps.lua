@@ -16,7 +16,9 @@ function steps.played()
 end
 
 function steps.isAtFirstTickOfAStep()
-    return steps.played() - steps.playedFloat() == 0
+    -- Simply comraring with 0 is broken
+    local FLOAT_PRECISION_THRESHOLD_FIX = 0.001
+    return math.abs(steps.played() - steps.playedFloat()) < FLOAT_PRECISION_THRESHOLD_FIX
 end
 
 return steps
