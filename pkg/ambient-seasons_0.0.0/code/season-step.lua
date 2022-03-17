@@ -7,6 +7,8 @@ return function(time)
         --game.print("area: " .. serpent.line(chunk.area))
         
         --game.print(game.ticks_played .. "time.months.current " .. time.months.current())
-        game.print(time.steps.played() - time.steps.playedFloat())
+        game.print(game.ticks_played ..
+                " m:" .. time.months.current() ..
+                " step:" .. time.steps.played())
     end
 end
