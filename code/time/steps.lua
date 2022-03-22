@@ -7,7 +7,7 @@ function steps.init(secondsArg)
 end
 
 function steps.playedFloat()
-    local SECONDS_IN_A_STEP = 0.6
+    local SECONDS_IN_A_STEP = 1.2
     return seconds.playedFloat() / SECONDS_IN_A_STEP
 end
 

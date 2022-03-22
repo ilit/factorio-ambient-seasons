@@ -14,7 +14,23 @@ function normalize(rawNoiseValsToPos)
         local y = triplet[3]
 
         ret[#ret +1] =
-            { normalized, x, y }
+        { normalized, x, y }
+    end
+
+    return ret
+end
+
+-- Filter positions by noise
+function filterPositionsByNoise(valsToPos, min, max)
+    local ret = {}
+    for i, triplet in ipairs(valsToPos) do
+        local noise = triplet[1]
+        local x = triplet[2]
+        local y = triplet[3]
+
+        if min <= noise and noise < max then
+            ret[#ret +1] = { x, y }
+        end
     end
 
     return ret
@@ -40,17 +56,25 @@ end
 -- @time - dependency routines
 return function(time)
     for chunk in game.surfaces.nauvis.get_chunks() do
-        local noiseToPos = normalize(noise.eval(chunk))
+        if chunk.x == 0 and chunk.y == 0 then
+            local noiseToPos = normalize(noise.eval(chunk))
 
-        local isCooling = time.months.current() % 2 == 0
+            local positionsToModify = filterPositionsByNoise(
+                    noiseToPos,
+                    time.months.leftPart(),
+                    time.months.rightPart()
+            )
 
-        if (isCooling) then
-            game.print("cooling")
-            --local positionsToFreeze =
-        else
-            game.print("warming")
+            local isCooling = time.months.current() % 2 == 0
+            if (isCooling) then
+                game.print("cooling " .. #positionsToModify)
+                --local positionsToFreeze =
+            else
+                game.print("warming" .. #positionsToModify)
+            end
+
+            printTime(time)
+            game.print("---")
         end
-
-        printTime(time)
     end
 end
