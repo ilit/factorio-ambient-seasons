@@ -21,4 +21,9 @@ function months.current()
     return months.played() % MONTHS_IN_A_YEAR + 1
 end
 
+function months.passedPart()
+    --TODO
+    return 1
+end
+
 return months
