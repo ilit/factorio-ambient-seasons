@@ -33,7 +33,8 @@ end
 function printTime(time)
     game.print(game.ticks_played ..
             " month:" .. time.months.current() ..
-            " part:" .. time.months.passedPart())
+            " leftPart:" .. time.months.leftPart() ..
+            " rightPart:" .. time.months.rightPart())
 end
 
 -- @time - dependency routines

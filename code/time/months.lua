@@ -21,8 +21,12 @@ function months.current()
     return months.played() % MONTHS_IN_A_YEAR + 1
 end
 
-function months.passedPart()
+function months.leftPart()
     return months.playedFloat() - months.played()
+end
+
+function months.rightPart()
+    return months.leftPart() + 1 / months.STEPS_IN_A_MONTH
 end
 
 return months
