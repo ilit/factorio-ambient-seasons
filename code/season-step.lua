@@ -30,17 +30,26 @@ function logNoise(valsToPos)
     end
 end
 
+function printTime(time)
+    game.print(game.ticks_played ..
+            " month:" .. time.months.current() ..
+            " part:" .. time.months.passedPart())
+end
+
 -- @time - dependency routines
 return function(time)
-    --game.print(stepIndex .. " @time " .. evalTime())
-
     for chunk in game.surfaces.nauvis.get_chunks() do
         local noiseToPos = normalize(noise.eval(chunk))
 
+        local isCooling = time.months.current() % 2 == 0
 
+        if (isCooling) then
+            game.print("cooling")
+            --local positionsToFreeze =
+        else
+            game.print("warming")
+        end
 
-        game.print(game.ticks_played ..
-                " month:" .. time.months.current() ..
-                " part:" .. time.months.passedPart())
+        printTime(time)
     end
 end
