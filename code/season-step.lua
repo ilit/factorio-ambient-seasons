@@ -40,7 +40,7 @@ return function(time)
 
 
         game.print(game.ticks_played ..
-                " m:" .. time.months.current() ..
-                " step:" .. time.steps.played())
+                " month:" .. time.months.current() ..
+                " part:" .. time.months.passedPart())
     end
 end

@@ -1,6 +1,6 @@
 if not months then months = {} end
 
-months.STEPS_IN_A_MONTH = 3
+months.STEPS_IN_A_MONTH = 9
 
 months.steps = {}
 
@@ -22,8 +22,7 @@ function months.current()
 end
 
 function months.passedPart()
-    --TODO
-    return 1
+    return months.playedFloat() - months.played()
 end
 
 return months
