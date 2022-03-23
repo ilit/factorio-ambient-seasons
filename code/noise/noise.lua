@@ -1,9 +1,9 @@
 if not noise then noise = {} end
 
-require "code/positions/positions"
+require "code/functions-lib/positions/positions"
 
 function noise.eval(chunk)
-    local positions = noise.chunk.getPositionsArray(chunk)
+    local positions = positions.chunk.getPositionsArray(chunk)
 
     --"temperature",
     --"tile:deepwater:probability",

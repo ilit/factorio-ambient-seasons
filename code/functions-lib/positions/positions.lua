@@ -1,7 +1,7 @@
-if not noise then noise = {} end
-if not noise.chunk then noise.chunk = {} end
+if not positions then positions = {} end
+if not positions.chunk then positions.chunk = {} end
 
-function noise.chunk.getPositionsArray(chunk)
+function positions.chunk.getPositionsArray(chunk)
     local positions = {}
     for x = chunk.area.left_top.x,chunk.area.right_bottom.x,1
     do
