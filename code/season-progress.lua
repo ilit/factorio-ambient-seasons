@@ -5,7 +5,7 @@ seasonStep = require "code/season-step"
 
 function seasonProgress.onTick()
     if (time.steps.isAtFirstTickOfAStep()) then
-        seasonStep(time)
+        seasonStep()
     end
 end
 

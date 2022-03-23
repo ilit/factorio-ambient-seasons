@@ -1,4 +1,4 @@
-if not time then time = {} end
+time = {}
 
 time.seconds = require "code/functions-lib/time/seconds"
 time.steps = require "code/functions-lib/time/steps"

@@ -1,9 +1,10 @@
+time = require "code/functions-lib/time/time"
 require "noise"
 normalize = require "code/noise/normalize"
 filterPositionsByNoise = require "code/noise/pos-filter-min-max"
 logNoise = require "code/noise/debug"
 
-function printTime(time)
+function printTime()
     game.print(game.ticks_played ..
             " month:" .. time.months.current() ..
             " leftPart:" .. time.months.leftPart() ..
@@ -11,7 +12,7 @@ function printTime(time)
 end
 
 -- @time - dependency routines
-return function(time)
+return function()
     for chunk in game.surfaces.nauvis.get_chunks() do
         if chunk.x == 0 and chunk.y == 0 then
             local noiseToPos = normalize(noise.eval(chunk))
@@ -30,7 +31,7 @@ return function(time)
                 game.print("warming" .. #positionsToModify)
             end
 
-            printTime(time)
+            printTime()
             game.print("---")
         end
     end

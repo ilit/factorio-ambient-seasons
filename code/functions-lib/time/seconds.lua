@@ -1,4 +1,4 @@
-if not seconds then seconds = {} end
+seconds = {}
 
 function seconds.playedFloat()
     local TICKS_IN_A_SECOND = 60
