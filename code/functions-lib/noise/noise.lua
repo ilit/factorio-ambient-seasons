@@ -1,4 +1,5 @@
-if not noise then noise = {} end
+noise = {}
+
 positions = require "code/functions-lib/positions/positions"
 
 -- Get raw noise values from noise generator

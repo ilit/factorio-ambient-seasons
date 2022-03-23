@@ -1,6 +1,6 @@
 time = require "code/functions-lib/time/time"
-noise = require "code/noise/noise"
-filterPositionsByNoise = require "code/noise/pos-filter-min-max"
+noise = require "code/functions-lib/noise/noise"
+filterPositionsByNoise = require "code/functions-lib/noise/pos-filter-min-max"
 
 function printTime()
     game.print(game.ticks_played ..
