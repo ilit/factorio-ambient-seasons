@@ -1,6 +1,6 @@
 if not seasonProgress then seasonProgress = {} end
 
-time = require "code/time/time"
+time = require "code/functions-lib/time/time"
 seasonStep = require "code/season-step"
 
 function seasonProgress.onTick()
