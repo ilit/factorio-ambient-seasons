@@ -1,9 +1,8 @@
 if not noise then noise = {} end
 
-require "code/functions-lib/positions/positions"
-
 function noise.eval(chunk)
-    local positions = positions.chunk.getPositionsArray(chunk)
+    positions = require "code/functions-lib/positions/positions"
+    local chunkPositions = positions.chunk.getPositionsArray(chunk)
 
     --"temperature",
     --"tile:deepwater:probability",
@@ -14,8 +13,8 @@ function noise.eval(chunk)
 
     local noiseValsToPos = {}
     for index,val in ipairs(noiseVals) do
-        local x = positions[index][1]
-        local y = positions[index][2]
+        local x = chunkPositions[index][1]
+        local y = chunkPositions[index][2]
         noiseValsToPos[#noiseValsToPos+1] = { val, x, y }
     end
 

@@ -1,5 +1,5 @@
-if not positions then positions = {} end
-if not positions.chunk then positions.chunk = {} end
+positions = {}
+positions.chunk = {}
 
 function positions.chunk.getPositionsArray(chunk)
     local positions = {}
@@ -12,3 +12,5 @@ function positions.chunk.getPositionsArray(chunk)
     end
     return positions
 end
+
+return positions

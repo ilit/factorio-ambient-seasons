@@ -11,7 +11,6 @@ function printTime()
             " rightPart:" .. time.months.rightPart())
 end
 
--- @time - dependency routines
 return function()
     for chunk in game.surfaces.nauvis.get_chunks() do
         if chunk.x == 0 and chunk.y == 0 then
