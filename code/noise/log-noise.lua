@@ -1,4 +1,4 @@
---logNoise
+--log noise
 return function(valsToPos)
     for i, triplet in ipairs(valsToPos) do
         local noise = triplet[1]
