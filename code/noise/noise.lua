@@ -1,19 +1,9 @@
 if not noise then noise = {} end
 
-function noise.positions(chunk)
-    local positions = {}
-    for x = chunk.area.left_top.x,chunk.area.right_bottom.x,1
-    do
-        for y = chunk.area.left_top.y,chunk.area.right_bottom.y,1
-        do
-            positions[#positions+1] = { x, y }
-        end
-    end
-    return positions
-end
+require "code/positions/positions"
 
 function noise.eval(chunk)
-    local positions = noise.positions(chunk)
+    local positions = noise.chunk.getPositionsArray(chunk)
 
     --"temperature",
     --"tile:deepwater:probability",
