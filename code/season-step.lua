@@ -1,31 +1,7 @@
 require "noise"
 normalize = require "code/noise/normalize"
-
--- Filter positions by noise
-function filterPositionsByNoise(valsToPos, min, max)
-    local ret = {}
-    for i, triplet in ipairs(valsToPos) do
-        local noise = triplet[1]
-        local x = triplet[2]
-        local y = triplet[3]
-
-        if min <= noise and noise < max then
-            ret[#ret +1] = { x, y }
-        end
-    end
-
-    return ret
-end
-
-function logNoise(valsToPos)
-    for i, triplet in ipairs(valsToPos) do
-        local noise = triplet[1]
-        local x = triplet[2]
-        local y = triplet[3]
-
-        log(x .." ".. y .." ".. noise)
-    end
-end
+filterPositionsByNoise = require "code/noise/pos-filter-min-max"
+logNoise = require "code/noise/debug"
 
 function printTime(time)
     game.print(game.ticks_played ..
