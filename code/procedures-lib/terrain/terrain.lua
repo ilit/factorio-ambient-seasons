@@ -5,7 +5,7 @@ function terrain.newTiles(positionsToModify)
 
     for i, pos in ipairs(positionsToModify) do
         local newTileName = {}
-        local isCooling = time.months.current() % 2 == 0
+        local isCooling = time.months.current() % 2 == 1
         if (isCooling) then
             --local tile = game.surfaces.nauvis.get_tile(pos.x, pos.y)
             newTileName = "frozen-snow-1"

@@ -8,8 +8,8 @@ printStepDebugData = require "code/debug/print-step-debug-data.lua"
 
 return function()
     for chunk in game.surfaces.nauvis.get_chunks() do
-        if chunk.x > 0 and chunk.y > 0 and chunk.x < 9 and chunk.y < 9 then
-            local noiseToPos = noise.normalize(noise.generateRaw(chunk))
+        if chunk.x > -6 and chunk.y > -6 and chunk.x < 6 and chunk.y < 6 then
+            local noiseToPos = noise.elevation.get(chunk)
 
             local positionsToModify = filterPositionsByNoise(
                                         noiseToPos,

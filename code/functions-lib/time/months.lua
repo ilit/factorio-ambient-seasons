@@ -1,6 +1,6 @@
 if not months then months = {} end
 
-months.STEPS_IN_A_MONTH = 13
+months.STEPS_IN_A_MONTH = 40
 
 months.steps = {}
 

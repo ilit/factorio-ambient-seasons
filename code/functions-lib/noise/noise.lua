@@ -1,4 +1,6 @@
 noise = {}
+noise.elevation = require "code/functions-lib/noise/elevation"
+noise.elevation.set_common_routines(noise)
 
 positions = require "code/functions-lib/positions/positions"
 
