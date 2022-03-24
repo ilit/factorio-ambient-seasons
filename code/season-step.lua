@@ -18,6 +18,7 @@ return function()
                                       )
 
             local newTiles = terrain.newTiles(positionsToModify)
+            game.surfaces.nauvis.set_tiles(newTiles)
             --flora.update()
 
             printStepDebugData()
