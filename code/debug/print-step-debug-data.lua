@@ -4,5 +4,5 @@ return function()
             " leftPart:" .. time.months.leftPart() ..
             " rightPart:" .. time.months.rightPart())
 
-    game.print("---")
+    --game.print("---")
 end
