@@ -1,10 +1,8 @@
 time = require "code/functions-lib/time/time"
-noise = require "code/functions-lib/noise/noise"
-filterPositionsByNoise = require "code/functions-lib/noise/pos-filter-min-max"
-
-terrain = require "code/procedures-lib/terrain/terrain"
-
-printStepDebugData = require "code/debug/print-step-debug-data.lua"
+local noise = require "code/functions-lib/noise/noise"
+local filterPositionsByNoise = require "code/functions-lib/noise/pos-filter-min-max"
+local terrain = require "code/procedures-lib/terrain/terrain"
+local printStepDebugData = require "code/debug/print-step-debug-data.lua"
 
 return function()
     for chunk in game.surfaces.nauvis.get_chunks() do

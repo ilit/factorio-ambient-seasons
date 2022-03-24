@@ -1,4 +1,4 @@
-positions = {}
+local positions = {}
 positions.chunk = {}
 
 function positions.chunk.getPositionsArray(chunk)

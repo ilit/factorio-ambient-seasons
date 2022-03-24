@@ -1,21 +1,19 @@
-elevation = {}
+local elevation = {}
 
-local routines = {}
-local cache = {}
+local routines = require "code/functions-lib/noise/common-routines"
 
-function elevation.set_common_routines(routinesArg)
-    routines = routinesArg
-end
+if elevationCache == nil then elevationCache = {} end
 
 function elevation.get(chunk)
     local key = chunk.x .. "/" .. chunk.y
-    if cache[key] == nil then
+    if elevationCache[key] == nil then
         game.print("Cache for " .. key .. " is empty. Generating.")
-        local generatedNoise = noise.normalize(noise.generateRaw(chunk))
-        cache[key] = generatedNoise
+        local generatedNoise = routines.normalize(
+                routines.generateRaw(chunk))
+        elevationCache[key] = generatedNoise
     end
 
-    return cache[key]
+    return elevationCache[key]
 end
 
 return elevation
