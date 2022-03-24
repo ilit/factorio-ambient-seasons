@@ -17,10 +17,8 @@ return function()
                                         time.months.rightPart()
                                       )
 
-            for i, pos in ipairs(positionsToModify) do
-                terrain.updatePos(pos)
-                --flora.update()
-            end
+            local newTiles = terrain.newTiles(positionsToModify)
+            --flora.update()
 
             printStepDebugData()
         end

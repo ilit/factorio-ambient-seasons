@@ -1,6 +1,11 @@
 terrain = {}
 
-function terrain.updatePos(pos)
+function terrain.newTiles(positionsToModify)
+    for i, pos in ipairs(positionsToModify) do
+
+    end
+
+
     local isCooling = time.months.current() % 2 == 0
     if (isCooling) then
         game.print("cooling ")
