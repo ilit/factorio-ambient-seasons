@@ -1,23 +1,33 @@
 time = require "code/functions-lib/time/time"
-local noise = require "code/functions-lib/noise/noise"
+local elevation = require "code/functions-lib/noise/elevation"
 local filterPositionsByNoise = require "code/functions-lib/noise/pos-filter-min-max"
 local terrain = require "code/procedures-lib/terrain/terrain"
 local printStepDebugData = require "code/debug/print-step-debug-data.lua"
 
 return function()
     for chunk in game.surfaces.nauvis.get_chunks() do
-        local noiseToPos = noise.elevation.get(chunk)
+        if (chunk.valid) then -- TODO not working
+            --and game.surfaces.nauvis.is_chunk_generated(chunk)
+            local noiseToPos = elevation.get(chunk)
 
-        local positionsToModify = filterPositionsByNoise(
-                                    noiseToPos,
-                                    time.months.leftPart(),
-                                    time.months.rightPart()
-                                  )
+            local positionsToModify = filterPositionsByNoise(
+                    noiseToPos,
+                    time.months.leftPart(),
+                    time.months.rightPart()
+            )
 
-        local newTiles = terrain.newTiles(positionsToModify)
-        game.surfaces.nauvis.set_tiles(newTiles)
-        --flora.update()
+            local newTiles = terrain.newTiles(positionsToModify)
+            for i, pos in ipairs(positionsToModify) do
+                local tile = game.surfaces.nauvis.get_tile(pos.x, pos.y)
+                if (not tile.valid) then
+                    game.print("invalid tile")
+                end
+            end
 
-        printStepDebugData()
+            game.surfaces.nauvis.set_tiles(newTiles)
+            --flora.update()
+
+            printStepDebugData()
+        end
     end
 end
