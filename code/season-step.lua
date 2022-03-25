@@ -6,8 +6,12 @@ local printStepDebugData = require "code/debug/print-step-debug-data.lua"
 
 return function()
     for chunk in game.surfaces.nauvis.get_chunks() do
-        if (chunk.valid) then -- TODO not working
-            --and game.surfaces.nauvis.is_chunk_generated(chunk)
+        game.print("QQ")
+        if game.surfaces.nauvis.is_chunk_generated(chunk) then -- TODO not working
+            --if not chunk.valid then
+            --    game.print("chunk invalid " .. chunk.x .. "-" .. chunk.y)
+            --end
+
             local noiseToPos = elevation.get(chunk)
 
             local positionsToModify = filterPositionsByNoise(

@@ -16,7 +16,7 @@ function elevation.get(chunk)
         --game.print("Cache for " .. key .. " FOUND.")
     end
 
-    --game.print("Cache size " .. elevationCacheSize .. " " .. game.ticks_played)
+    game.print("Cache size " .. elevationCacheSize .. " " .. game.ticks_played)
     return elevationCache[key]
 end
 
