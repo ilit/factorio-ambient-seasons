@@ -1,4 +1,4 @@
-seconds = {}
+local seconds = {}
 
 function seconds.playedFloat()
     local TICKS_IN_A_SECOND = 60
