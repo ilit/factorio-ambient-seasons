@@ -10,7 +10,7 @@ function positions.chunk.getPositionsArray(chunk)
             chunkPositions[#chunkPositions+1] = { x, y }
         end
     end
-    --game.print("#chunkPositions " .. #chunkPositions)
+
     return chunkPositions
 end
 

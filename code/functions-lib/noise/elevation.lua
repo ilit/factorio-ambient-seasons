@@ -1,23 +1,16 @@
 local elevation = {}
 
 local routines = require "code/functions-lib/noise/common-routines"
-
-elevationCache = {}
-elevationCacheSize = 0
+local cache = require "code/persistence/cache"
 
 function elevation.get(chunk)
     local key = chunk.x .. "_" .. chunk.y
-    if not elevationCache[key] then
-        --game.print("Cache for " .. key .. " is empty. Generating.")
+    if not cache.elevation[key] then
         local generatedNoise = routines.normalize(routines.generateRaw(chunk))
-        elevationCache[key] = generatedNoise
-        elevationCacheSize = elevationCacheSize + 1
-    else
-        --game.print("Cache for " .. key .. " FOUND.")
+        cache.elevation[key] = generatedNoise
     end
 
-    game.print("Cache size " .. elevationCacheSize .. " " .. game.ticks_played)
-    return elevationCache[key]
+    return cache.elevation[key]
 end
 
 return elevation

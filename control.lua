@@ -1,14 +1,29 @@
-seasonProgress = require "code/season-progress"
+local elevation = require "code/functions-lib/noise/elevation"
 
-globalVarTest = 0
+local seasonProgress = require "code/season-progress"
+local cache = require "code/persistence/cache"
 
-registerOnTickEvent = function(str)
+local registerEvents = function(str)
     script.on_event(defines.events.on_tick, function(event)
         seasonProgress.onTick()
-        --globalVarTest = globalVarTest + 1
-        --game.print(globalVarTest)
+    end)
+
+    -- Pregenerate caches
+    script.on_event(defines.events.on_chunk_generated, function(event)
+        if (event.surface.index == 0) then
+            local chunk = event.position
+            game.print(chunk.x)
+            elevation.get(chunk)
+        end
+    end)
+
+    script.on_event(defines.events.on_chunk_charted, function(event)
+        if (event.surface_index == 0) then
+            -- TODO on_chunk_charted
+            -- touchSeasoning
+        end
     end)
 end
 
-script.on_init(registerOnTickEvent)
-script.on_load(registerOnTickEvent)
+script.on_init(registerEvents)
+script.on_load(registerEvents)
