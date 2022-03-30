@@ -8,17 +8,18 @@ local registerEvents = function(str)
         tasksQueueExec()
     end)
 
-    -- Pregenerate caches
     script.on_event(defines.events.on_chunk_generated, function(event)
-        if (event.surface.index == 0) then
-            local chunk = event.position
-            game.print("Pregenerating chunk.x " .. chunk.x)
+        -- Pregenerate caches
+        if (event.surface.index == 1) then
+            local chunkPos = event.position
+            event.surface -- TODO get Chunk out of chunkPos
+            game.print("Pregenerating chunk " .. chunk.x .." " .. chunk.y)
             elevation.get(chunk)
         end
     end)
 
     script.on_event(defines.events.on_chunk_charted, function(event)
-        if (event.surface_index == 0) then
+        if (event.surface_index == 1) then
             -- TODO on_chunk_charted
             -- touchSeasoning
         end

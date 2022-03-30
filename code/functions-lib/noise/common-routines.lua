@@ -1,10 +1,12 @@
 local routines = {}
 
-local positions = require "code/functions-lib/positions/positions"
+local chunkToPositions = require "code/functions-lib/positions/chunk-to-positions"
 
 -- Get raw noise values from noise generator
 function routines.generateRaw(chunk)
-    local chunkPositions = positions.chunk.getPositionsArray(chunk)
+    if chunk.x == nil then error("chunk.x == nil") end
+
+    local chunkPositions = chunkToPositions(chunk)
 
     --"temperature",
     --"tile:deepwater:probability",
