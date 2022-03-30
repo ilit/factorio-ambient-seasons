@@ -1,11 +1,12 @@
-if not seasonProgress then seasonProgress = {} end
+local seasonProgress = {}
 
-time = require "code/functions-lib/time/time"
-seasonStep = require "code/season-step"
+local buildTime = require "code/functions-lib/time/time-factory"
+local seasonStep = require "code/season-step"
 
 function seasonProgress.onTick()
-    if (time.steps.isAtFirstTickOfAStep()) then
-        seasonStep()
+    local time = buildTime()
+    if (time.isAtFirstTickOfAStep) then
+        seasonStep(time)
     end
 end
 

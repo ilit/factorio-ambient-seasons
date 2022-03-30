@@ -1,7 +1,5 @@
 local elevation = require "code/functions-lib/noise/elevation"
-
 local seasonProgress = require "code/season-progress"
-local cache = require "code/persistence/cache"
 
 local registerEvents = function(str)
     script.on_event(defines.events.on_tick, function(event)
