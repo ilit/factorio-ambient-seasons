@@ -1,0 +1,3 @@
+/c game.player.force.chart_all()
+
+/c local radius=1200 game.player.force.chart(game.player.surface, {{game.player.position.x-radius, game.player.position.y-radius}, {game.player.position.x+radius, game.player.position.y+radius}})

@@ -1,7 +1,6 @@
-if not months then months = {} end
+local months = {}
 
 months.STEPS_IN_A_MONTH = 40
-
 months.steps = {}
 
 function months.init(stepsArg)

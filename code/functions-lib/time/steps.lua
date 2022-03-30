@@ -1,4 +1,4 @@
-if not steps then steps = {} end
+local steps = {}
 
 steps.seconds = {}
 
@@ -7,8 +7,8 @@ function steps.init(secondsArg)
 end
 
 function steps.playedFloat()
-    local SECONDS_IN_A_STEP = 0.5
-    return seconds.playedFloat() / SECONDS_IN_A_STEP
+    local SECONDS_IN_A_STEP = 5
+    return steps.seconds.playedFloat() / SECONDS_IN_A_STEP
 end
 
 function steps.played()
