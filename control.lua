@@ -4,7 +4,7 @@ local tasksQueueExec = require "code/procedures/tasks-execute"
 
 local registerEvents = function(str)
     script.on_event(defines.events.on_tick, function(event)
-        seasonProgress.onTick()
+        seasonProgress()
         tasksQueueExec()
     end)
 
