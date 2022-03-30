@@ -1,10 +1,6 @@
 local steps = {}
 
-steps.seconds = {}
-
-function steps.init(secondsArg)
-    steps.seconds = secondsArg
-end
+steps.seconds = require "code/functions-lib/time/seconds"
 
 function steps.playedFloat()
     local SECONDS_IN_A_STEP = 5

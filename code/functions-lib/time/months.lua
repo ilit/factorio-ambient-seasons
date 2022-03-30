@@ -1,7 +1,7 @@
 local months = {}
 
 months.STEPS_IN_A_MONTH = 40
-months.steps = {}
+months.steps = require "code/functions-lib/time/steps"
 
 function months.init(stepsArg)
     months.steps = stepsArg

@@ -1,12 +1,9 @@
 local timeFactory = {}
 
-timeFactory.seconds = require "code/functions-lib/time/seconds"
 timeFactory.steps = require "code/functions-lib/time/steps"
-timeFactory.steps.init(seconds)
 timeFactory.months = require "code/functions-lib/time/months"
-timeFactory.months.init(steps)
 
-return function()
+function timeFactory.newTime()
     local time = {}
     time.isAtFirstTickOfAStep = timeFactory.steps.isAtFirstTickOfAStep()
     time.currentMonth = timeFactory.months.current()
@@ -15,3 +12,5 @@ return function()
 
     return time
 end
+
+return timeFactory
