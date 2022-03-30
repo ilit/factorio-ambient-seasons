@@ -1,14 +1,11 @@
 local months = {}
 
-months.STEPS_IN_A_MONTH = 40
-months.steps = require "code/functions-lib/time/steps"
+local steps = require "code/functions-lib/time/steps"
 
-function months.init(stepsArg)
-    months.steps = stepsArg
-end
+months.STEPS_IN_A_MONTH = 40
 
 function months.playedFloat()
-    return months.steps.played() / months.STEPS_IN_A_MONTH
+    return steps.played() / months.STEPS_IN_A_MONTH
 end
 
 function months.played()

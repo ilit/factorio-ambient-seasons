@@ -1,10 +1,10 @@
 local steps = {}
 
-steps.seconds = require "code/functions-lib/time/seconds"
+local seconds = require "code/functions-lib/time/seconds"
 
 function steps.playedFloat()
     local SECONDS_IN_A_STEP = 5
-    return steps.seconds.playedFloat() / SECONDS_IN_A_STEP
+    return seconds.playedFloat() / SECONDS_IN_A_STEP
 end
 
 function steps.played()
