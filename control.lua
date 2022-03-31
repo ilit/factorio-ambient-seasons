@@ -1,6 +1,6 @@
-local elevation = require "code/functions-lib/noise/elevation"
 local seasonProgress = require "code/season-progress"
 local tasksQueueExec = require "code/procedures/tasks-execute"
+local pregenerateChunkCaches = require "code/procedures/pregenerate-chunk-caches"
 
 local registerEvents = function(str)
     script.on_event(defines.events.on_tick, function(event)
@@ -9,12 +9,8 @@ local registerEvents = function(str)
     end)
 
     script.on_event(defines.events.on_chunk_generated, function(event)
-        -- Pregenerate caches
         if (event.surface.index == 1) then
-            local chunkPos = event.position
-            event.surface -- TODO get Chunk out of chunkPos
-            game.print("Pregenerating chunk " .. chunk.x .." " .. chunk.y)
-            elevation.get(chunk)
+            pregenerateChunkCaches(event.surface, event.position)
         end
     end)
 
