@@ -2,7 +2,7 @@ local seasonProgress = require "code/season-progress"
 local tasksQueueExec = require "code/procedures/tasks-execute"
 local pregenerateChunkCaches = require "code/procedures/pregenerate-chunk-caches"
 
-local registerEvents = function(str)
+local registerEvents = function()
     script.on_event(defines.events.on_tick, function(event)
         seasonProgress()
         tasksQueueExec()
@@ -24,5 +24,9 @@ local registerEvents = function(str)
     --end)
 end
 
-script.on_init(registerEvents)
-script.on_load(registerEvents)
+local init = function()
+    registerEvents()
+end
+
+script.on_init(init)
+script.on_load(init)
