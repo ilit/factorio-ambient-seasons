@@ -1,6 +1,4 @@
-terrain = {}
-
-function terrain.newTiles(time, positionsToModify)
+return function (time, positionsToModify)
     local tiles = {}
 
     for i, pos in ipairs(positionsToModify) do
@@ -17,5 +15,3 @@ function terrain.newTiles(time, positionsToModify)
 
     return tiles
 end
-
-return terrain
