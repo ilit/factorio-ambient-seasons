@@ -3,6 +3,10 @@ local constants = require "code/constants"
 return function()
     local settings = game.get_surface("nauvis").map_gen_settings
 
+    for i,d in pairs(data.raw["optimized-decorative"]) do
+        game.print(serpent.block(i))
+        a=d.autoplace
+    end
     --game.print(serpent.block(game.get_surface("nauvis").map_gen_settings.cliff_settings))
 
     --log("################")
