@@ -1,17 +1,7 @@
-local constants = require "code/constants"
-
-local originalSurface = function()
-    return game.surfaces[constants.ORIGINAL_SURFACE]
-end
-
-local tryRegisterOriginalSurface = function()
-    if not originalSurface then
-        local settings = game.surfaces.nauvi.map_gen_settings
-        game.create_surface(constants.ORIGINAL_SURFACE, settings)
-    end
-end
+local getOriginalSurface = require "code/persistence/original-surface-get"
 
 return function(x, y)
-    tryRegisterOriginalSurface()
-    return originalSurface().get_tile(x, y).prototype.name
+    local oSurf = getOriginalSurface()
+    local tile = oSurf.get_tile(x, y)
+    return tile
 end

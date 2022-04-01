@@ -12,7 +12,7 @@ local registerEvents = function()
     -- + surface for player manual modifications - dirt over water && concrete
 
     script.on_event(defines.events.on_chunk_generated, function(event)
-        if (event.surface.index == 1) then
+        if event.surface.index == 1 then
             pregenerateChunkCaches(event.surface, event.position)
         end
     end)
