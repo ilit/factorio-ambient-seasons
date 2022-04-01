@@ -2,7 +2,7 @@ local taskQueue = require "code/persistence/tasks-queue"
 local getOriginalSurface = require "code/persistence/original-surface-get"
 local writeSeasonOverChunk = require "code/procedures/write-season-over-chunk.lua"
 
-local CHUNKS_PROCESSED_PER_TICK = 16
+local CHUNKS_PROCESSED_PER_TICK = 20
 
 local isChunkReady = function(chunk)
     return getOriginalSurface().is_chunk_generated(chunk)
@@ -20,7 +20,6 @@ end
 
 return function()
     local unreadyChunksLen = 0
-    local unreadyChunks = ""
     for i=1,CHUNKS_PROCESSED_PER_TICK do
         if not taskQueue:is_empty() then
             local task = taskQueue:pop_left()
@@ -29,7 +28,6 @@ return function()
                 writeSeasonOverChunk(task.time, chunk)
             else -- Chunk is not ready.
                 unreadyChunksLen = unreadyChunksLen + 1
-                unreadyChunks = unreadyChunks .. "x" .. chunk.x .. "y" .. chunk.x .. "  "
 
                 prepareChunk(chunk)
                 -- Delay task
@@ -38,9 +36,10 @@ return function()
         end
     end
 
-    game.print("unreadyChunksLen " .. unreadyChunksLen .. " requested")
-    game.print("unreadyChunks " .. unreadyChunks)
-    game.print("")
+    --game.print("unreadyChunksLen " .. unreadyChunksLen .. " requested")
+    --game.print("taskQueue:length() " .. taskQueue:length())
+    --game.print("")
+
     -- TODO Is this necessary?
     getOriginalSurface().force_generate_chunk_requests()
 end
