@@ -2,7 +2,7 @@ local months = {}
 
 local steps = require "code/functions-lib/time/steps"
 
-months.STEPS_IN_A_MONTH = 2
+months.STEPS_IN_A_MONTH = 4
 
 function months.playedFloat()
     return steps.played() / months.STEPS_IN_A_MONTH
@@ -13,7 +13,7 @@ function months.played()
 end
 
 function months.current()
-    local MONTHS_IN_A_YEAR = 12
+    local MONTHS_IN_A_YEAR = 4
     return months.played() % MONTHS_IN_A_YEAR + 1
 end
 
