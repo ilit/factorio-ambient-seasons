@@ -6,9 +6,11 @@ return function (time, positionsToModify)
     for _, pos in ipairs(positionsToModify) do
         local season = time.currentMonth % 4 + 1
 
-        local newTileName = tileTransitions.deciduous[season]
+        temperature
 
-        table.insert(tiles, {name = newTileName, position = {pos.x, pos.y}})
+        --local newTileName = tileTransitions.deciduous[season]
+
+        --table.insert(tiles, {name = newTileName, position = {pos.x, pos.y}})
     end
 
     return tiles

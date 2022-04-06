@@ -1,8 +1,15 @@
 ) Don't bother with noise. Just save tiles to bk surface.
 Alien - Mundane
-Grass 1 - Grass 2
+Grass-1 - Grass-2
 Scorching - Normal
+
+) OR Use mainly my custom noises.
+AB Noises of use: TerrainType
 
 On Generated.
 On abscent - find nearest placed
+On unknown - md5(Tile.name) % 4; 0: Alien Grass-1, 1: Mundane Grass-1, 2: Alien Grass-2
+
+)
+
 ) Place dirt under Concrete-Bricks
