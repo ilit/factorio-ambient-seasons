@@ -1,3 +1,5 @@
+local aux = require "code/functions-lib/noise/aux"
+
 return function (time, positionsToModify)
     local tiles = {}
 
@@ -8,7 +10,11 @@ return function (time, positionsToModify)
         if (season == 1) then
             newTileName = "frozen-snow-1"
         else
-            newTileName = "vegetation-olive-grass-2"
+            if aux.getByPos(pos) > 0.5 then
+                newTileName = "vegetation-olive-grass-2"
+            else
+                newTileName = "vegetation-mauve-grass-2"
+            end
         end
         table.insert(tiles, {name = newTileName, position = {pos.x, pos.y}})
     end

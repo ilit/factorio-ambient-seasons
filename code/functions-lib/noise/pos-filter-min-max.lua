@@ -2,7 +2,7 @@
 --filterPositionsByNoise
 return function(valsToPos, min, max)
     local ret = {}
-    for i, triplet in ipairs(valsToPos) do
+    for _, triplet in ipairs(valsToPos) do
         local noise = triplet[1]
         local pos = {}
         pos.x = triplet[2]

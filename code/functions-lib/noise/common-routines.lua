@@ -3,17 +3,16 @@ local routines = {}
 local chunkToPositions = require "code/functions-lib/positions/chunk-to-positions"
 
 -- Get raw noise values from noise generator
-function routines.generateRaw(chunk)
+function routines.generateRaw(chunk, propName)
     if chunk.x == nil then error("chunk.x == nil") end
+    if chunk.area == nil then error("chunk.area == nil") end
 
     local chunkPositions = chunkToPositions(chunk)
 
-    --"temperature",
-    --"tile:deepwater:probability",
-    --"tile:grass:probability"
-    local PROP_NAME = "elevation"
-    local calcResults = game.surfaces.nauvis.calculate_tile_properties({ PROP_NAME }, chunkPositions)
-    local noiseVals = calcResults[PROP_NAME]
+    local calcResults = game.surfaces.nauvis.calculate_tile_properties({ propName }, chunkPositions)
+    if not calcResults then error("No noise results!") end
+
+    local noiseVals = calcResults[propName]
 
     local noiseValsToPos = {}
     for index,val in ipairs(noiseVals) do
@@ -30,7 +29,7 @@ function routines.normalize(rawNoiseValsToPos)
     local TOP_ELEVATION = 27
 
     local ret = {}
-    for i, triplet in ipairs(rawNoiseValsToPos) do
+    for _, triplet in ipairs(rawNoiseValsToPos) do
         local rawNoise = triplet[1]
         local capped = math.min(rawNoise, TOP_ELEVATION)
         local normalized = capped / TOP_ELEVATION

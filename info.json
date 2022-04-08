@@ -8,6 +8,7 @@
     "homepage": "https://github.com/ilit/factorio-ambient-seasons",
     "description": "Description",
     "dependencies": [
-        "alien-biomes"
+        "alien-biomes",
+        "stdlib"
     ]
 }
