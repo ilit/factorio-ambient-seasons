@@ -5,6 +5,7 @@ return function(surface, chunkPos)
         if (chunkIter.x == chunkPos.x and
             chunkIter.y == chunkPos.y) then
             elevation.get(chunkIter)
+            -- TODO More caches
         end
     end
 end

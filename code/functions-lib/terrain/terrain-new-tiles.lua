@@ -1,16 +1,16 @@
-local tileTransitions = require "transition-tables/tile-transitions"
-
 return function (time, positionsToModify)
     local tiles = {}
 
     for _, pos in ipairs(positionsToModify) do
-        local season = time.currentMonth % 4 + 1
+        local season = time.currentMonth % 2 + 1
 
-        temperature
-
-        --local newTileName = tileTransitions.deciduous[season]
-
-        --table.insert(tiles, {name = newTileName, position = {pos.x, pos.y}})
+        local newTileName = ""
+        if (season == 1) then
+            newTileName = "frozen-snow-1"
+        else
+            newTileName = "vegetation-olive-grass-2"
+        end
+        table.insert(tiles, {name = newTileName, position = {pos.x, pos.y}})
     end
 
     return tiles

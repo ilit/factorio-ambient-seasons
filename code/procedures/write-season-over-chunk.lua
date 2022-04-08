@@ -17,5 +17,4 @@ return function(time, chunk)
     --end
 
     game.surfaces.nauvis.set_tiles(newTiles)
-    -- TODO flora.update()
 end
