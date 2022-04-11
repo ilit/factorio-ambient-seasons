@@ -18,6 +18,7 @@ function cache.getByChunk(domain, generator, chunk)
     local key = chunk.x .. "_" .. chunk.y
     if not cache[domain][key] then
         cache[domain][key] = generator(chunk)
+        game.print("Generating "..domain.." for "..chunk.x.." "..chunk.y)
     end
 
     local chunkNoise = cache[domain][key]
