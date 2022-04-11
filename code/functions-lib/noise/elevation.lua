@@ -3,17 +3,20 @@ local elevation = {}
 local routines = require "code/functions-lib/noise/common-routines"
 local cache = require "code/persistence/cache"
 
-function elevation.getByChunk(chunk)
-    if chunk.x == nil then error("chunk is nil") end
+local DOMAIN = "elevation"
 
-    local key = chunk.x .. "_" .. chunk.y
-    if not cache.elevation[key] then
-        local PROP_NAME = "elevation"
-        local generatedNoise = routines.normalize(routines.generateRaw(chunk, PROP_NAME))
-        cache.elevation[key] = generatedNoise
+local generator =
+    function(chunk)
+        if chunk == nil then error("chunk is nil") end
+        return routines.normalize(routines.generateRaw(chunk, DOMAIN))
     end
 
-    return cache.elevation[key]
+function elevation.getByChunk(chunk)
+    return cache.getByChunk(DOMAIN, generator, chunk)
+end
+
+function elevation.getByPos(pos)
+    return cache.getByPos(DOMAIN, generator, pos)
 end
 
 return elevation

@@ -1,15 +1,13 @@
-return function(posArg, noiseChunk)
-    if not posArg.x then error("No position argument!") end
-    if not noiseChunk then error("No chunk argument!") end
+--- @chunkNoise format noiseValsToPos[#noiseValsToPos+1] = { val, x, y }
+return function(pos, chunkNoise)
+    if not pos.x then error("No position argument!") end
+    if not chunkNoise then error("No chunk argument!") end
 
-    for _, triplet in ipairs(noiseChunk) do
-        local noiseVal = triplet[1]
-        local pos = {}
-        if pos.x == posArg.x and pos.y == posArg.y then
-            return noiseVal
+    for _, t in ipairs(chunkNoise) do
+        if t.x == pos.x and t.y == pos.y then
+            return t.val
         end
     end
 
-    error("No position "..posArg.x.." "..posArg.y..
-            "  in chunk "..noiseChunk.x.." "..noiseChunk.y)
+    error("No position ".. pos.x.." ".. pos.y.." in chunkNoise")
 end

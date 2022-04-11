@@ -16,7 +16,7 @@ return function (time, positionsToModify)
                 newTileName = "vegetation-mauve-grass-2"
             end
         end
-        table.insert(tiles, {name = newTileName, position = {pos.x, pos.y}})
+        table.insert(tiles, {name = newTileName, position = { x = pos.x, y = pos.y }})
     end
 
     return tiles

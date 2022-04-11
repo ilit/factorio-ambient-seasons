@@ -13,15 +13,26 @@ function routines.generateRaw(chunk, propName)
     if not calcResults then error("No noise results!") end
 
     local noiseVals = calcResults[propName]
+    if table_size(noiseVals) < 100 then error("table_size(noiseVals) < 100 "..table_size(noiseVals)) end
+    if type(noiseVals[1]) ~= "number" then error("type(noiseVals[1]) ~= number") end
 
-    local noiseValsToPos = {}
+    local noiseValsAndPos = {}
     for index,val in ipairs(noiseVals) do
-        local x = chunkPositions[index][1]
-        local y = chunkPositions[index][2]
-        noiseValsToPos[#noiseValsToPos+1] = { val, x, y }
+        local x = chunkPositions[index].x
+        local y = chunkPositions[index].y
+        if type(x) ~= "number" then error("type(x) ~= number but "..type(x)) end
+        noiseValsAndPos[index] = {}
+        noiseValsAndPos[index].val = val
+        noiseValsAndPos[index].x = x
+        noiseValsAndPos[index].y = y
     end
 
-    return noiseValsToPos
+    if table_size(noiseValsAndPos) < 100 then error("table_size(noiseValsToPos) == "..table_size(noiseValsAndPos)) end
+    if noiseValsAndPos[1] == nil then error("noiseValsToPos[1] == nil "..table_size(noiseValsAndPos)) end
+    if noiseValsAndPos[1].val == nil then error("noiseValsToPos[1].val == nil") end
+    if noiseValsAndPos[1].x == nil then error("noiseValsToPos[1].x == nil "..table_size(noiseValsAndPos)) end
+
+    return noiseValsAndPos
 end
 
 -- Normalize to [0-1] scale
@@ -30,15 +41,14 @@ function routines.normalize(rawNoiseValsToPos)
 
     local ret = {}
     for _, triplet in ipairs(rawNoiseValsToPos) do
-        local rawNoise = triplet[1]
+        local rawNoise = triplet.val
         local capped = math.min(rawNoise, TOP_ELEVATION)
         local normalized = capped / TOP_ELEVATION
 
-        local x = triplet[2]
-        local y = triplet[3]
-
-        ret[#ret +1] =
-        { normalized, x, y }
+        ret[#ret +1] = {}
+        ret[#ret].val = normalized
+        ret[#ret].x = triplet.x
+        ret[#ret].y = triplet.y
     end
 
     return ret
