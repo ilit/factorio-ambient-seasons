@@ -11,7 +11,8 @@ local generator =
     end
 
 function aux.getByChunk(chunk)
-    return cache.getByChunk(DOMAIN, generator, chunk)
+    local noiseVal, noiseX, noiseY = cache.getByChunk(DOMAIN, generator, chunk)
+    return noiseVal, noiseX, noiseY
 end
 
 function aux.getByPos(pos)

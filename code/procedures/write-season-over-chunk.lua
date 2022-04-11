@@ -6,16 +6,17 @@ return function(time, chunk)
     if chunk == nil then error("chunk == nil") end
     if chunk.x == nil then error("chunk.x == nil") end
 
-    local elevationsToPos = elevation.getByChunk(chunk)
-    if elevationsToPos == nil then error("elevationsToPos == nil") end
+    local elevNoiseVals, noiseX, noiseY = elevation.getByChunk(chunk)
+    if elevNoiseVals == nil then error("elevNoiseVals == nil") end
+    if noiseX == nil then error("noiseX == nil") end
 
-    local positionsToModify = filterPositionsByNoise(
-            elevationsToPos,
+    local fnoiseX, fnoiseY = filterPositionsByNoise(
+            elevNoiseVals, noiseX, noiseY,
             time.monthLeftRelPart,
             time.monthRightRelPart
     )
 
-    local newTiles = evalNewTerrainTiles(time, positionsToModify)
+    local newTiles = evalNewTerrainTiles(time, fnoiseX, fnoiseY)
 
     game.surfaces.nauvis.set_tiles(newTiles)
 end

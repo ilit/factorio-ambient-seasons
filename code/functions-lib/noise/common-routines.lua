@@ -23,6 +23,14 @@ function routines.generateRaw(chunk, propName)
         noiseY[i] = chunkPositions[i].y
     end
 
+    if noiseVals == nil then error("noiseVals == nil") end
+    if noiseVals[1] == nil then error("noiseVals[1] == nil") end
+    if type(noiseVals[1]) ~= "number" then error("type(noiseVals[1]) ~= number") end
+
+    if noiseX == nil then error("noiseX == nil") end
+    if noiseX[1] == nil then error("noiseX[1] == nil") end
+    if type(noiseX[1]) ~= "number" then error("type(noiseX[1]) ~= number") end
+
     return noiseVals, noiseX, noiseY
 end
 
@@ -30,8 +38,8 @@ end
 function routines.normalize(noiseVal, noiseX, noiseY)
     local TOP_ELEVATION = 27
 
-    for index,_ in ipairs(noiseVal) do
-        noiseVal[index] = math.min(noiseVal[index], TOP_ELEVATION) / TOP_ELEVATION
+    for index,val in ipairs(noiseVal) do
+        noiseVal[index] = math.min(val, TOP_ELEVATION) / TOP_ELEVATION
     end
 
     return noiseVal, noiseX, noiseY

@@ -1,11 +1,12 @@
 local aux = require "code/functions-lib/noise/aux"
 
-return function (time, positionsToModify)
+return function (time, noiseX, noiseY)
     local tiles = {}
     local season = time.currentMonth % 2 + 1
 
-    for _, pos in ipairs(positionsToModify) do
+    for i = 1, #noiseX do
         local newTileName = ""
+        local pos = { x = noiseX[i], y = noiseY[i] }
         if (season == 1) then
             newTileName = "frozen-snow-1"
         else
@@ -15,7 +16,8 @@ return function (time, positionsToModify)
                 newTileName = "vegetation-mauve-grass-2"
             end
         end
-        table.insert(tiles, {name = newTileName, position = { x = pos.x, y = pos.y }})
+        -- TODO pos instead of position
+        table.insert(tiles, { name = newTileName, position = { x = pos.x, y = pos.y } })
     end
 
     return tiles

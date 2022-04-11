@@ -1,11 +1,10 @@
---- @chunkNoise format noiseValsToPos[#noiseValsToPos+1] = { val, x, y }
-return function(pos, chunkNoise)
+return function(pos, noiseVals, noiseX, noiseY)
     if not pos.x then error("No position argument!") end
-    if not chunkNoise then error("No chunk argument!") end
+    if not noiseVals then error("No chunk argument!") end
 
-    for _, t in ipairs(chunkNoise) do
-        if t.x == pos.x and t.y == pos.y then
-            return t.val
+    for i = 1,#noiseVals do
+        if noiseX[i] == pos.x and noiseY[i] == pos.y then
+            return noiseVals[i]
         end
     end
 
