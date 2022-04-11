@@ -16,23 +16,14 @@ function routines.generateRaw(chunk, propName)
     --if table_size(noiseVals) < 100 then error("table_size(noiseVals) < 100 "..table_size(noiseVals)) end
     --if type(noiseVals[1]) ~= "number" then error("type(noiseVals[1]) ~= number") end
 
-    local noiseValsAndPos = {}
-    -- TODO Dont loop noiseVals
-    local noiseVal={}
     local noiseX={}
     local noiseY={}
-    for index,val in ipairs(noiseVals) do
-        noiseVal[index] = val
-        noiseX[index] = chunkPositions[index].x
-        noiseY[index] = chunkPositions[index].y
+    for i=1,#noiseVals do
+        noiseX[i] = chunkPositions[i].x
+        noiseY[i] = chunkPositions[i].y
     end
 
-    --if table_size(noiseValsAndPos) < 100 then error("table_size(noiseValsToPos) == "..table_size(noiseValsAndPos)) end
-    --if noiseValsAndPos[1] == nil then error("noiseValsToPos[1] == nil "..table_size(noiseValsAndPos)) end
-    --if noiseValsAndPos[1].val == nil then error("noiseValsToPos[1].val == nil") end
-    --if noiseValsAndPos[1].x == nil then error("noiseValsToPos[1].x == nil "..table_size(noiseValsAndPos)) end
-
-    return noiseVal, noiseX, noiseY
+    return noiseVals, noiseX, noiseY
 end
 
 -- Normalize to [0-1] scale
