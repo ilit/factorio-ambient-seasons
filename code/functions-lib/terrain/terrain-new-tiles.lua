@@ -16,8 +16,7 @@ return function (time, noiseX, noiseY)
                 newTileName = "vegetation-mauve-grass-2"
             end
         end
-        -- TODO pos instead of position
-        table.insert(tiles, { name = newTileName, position = { x = pos.x, y = pos.y } })
+        table.insert(tiles, { name = newTileName, position = pos })
     end
 
     return tiles
