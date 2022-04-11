@@ -1,7 +1,7 @@
 return function(chunk)
     if chunk.area == nil then error("chunk.area == nil") end
     if chunk.area.left_top.x == nil then error("chunk.area == nil") end
-    if type(chunk.area.left_top.x) ~= "number" then error("type(chunk.area.left_top.x) ~= number "..type(positions[1].x)) end
+    --if type(chunk.area.left_top.x) ~= "number" then error("type(chunk.area.left_top.x) ~= number "..type(positions[1].x)) end
 
     local positions = {}
     for x = chunk.area.left_top.x, chunk.area.right_bottom.x
@@ -14,7 +14,7 @@ return function(chunk)
         end
     end
 
-    if type(positions[1].x) ~= "number" then error("type(positions[1].x) ~= number but "..type(positions[1].x)) end
+    --if type(positions[1].x) ~= "number" then error("type(positions[1].x) ~= number but "..type(positions[1].x)) end
 
     return positions
 end

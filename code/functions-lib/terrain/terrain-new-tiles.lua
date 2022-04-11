@@ -2,10 +2,9 @@ local aux = require "code/functions-lib/noise/aux"
 
 return function (time, positionsToModify)
     local tiles = {}
+    local season = time.currentMonth % 2 + 1
 
     for _, pos in ipairs(positionsToModify) do
-        local season = time.currentMonth % 2 + 1
-
         local newTileName = ""
         if (season == 1) then
             newTileName = "frozen-snow-1"
