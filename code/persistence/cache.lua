@@ -51,7 +51,7 @@ function cacheLocal.getByPos(domain, generator, pos)
     local chunkNoise = cacheLocal.getByChunk(domain, generator, chunk)
 
     local noiseVal = getPosNoiseFromChunk(pos, chunkNoise)
-    if type(noiseVal) ~= "number" then error("NaN") end
+    --if type(noiseVal) ~= "number" then error("NaN") end
     return noiseVal
 end
 
