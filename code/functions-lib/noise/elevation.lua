@@ -10,19 +10,11 @@ local generator =
         if chunk == nil then error("chunk is nil") end
         local noiseVal, noiseX, noiseY = routines.generateRaw(chunk, DOMAIN)
 
-        if noiseVal == nil then error("elevNoiseVals == nil") end
-        if noiseX == nil then error("noiseX == nil") end
-
         return routines.normalize(noiseVal, noiseX, noiseY)
     end
 
 function elevation.getByChunk(chunk)
-    local noiseVal, noiseX, noiseY = cache.getByChunk(DOMAIN, generator, chunk)
-
-    if noiseVal == nil then error("elevNoiseVals == nil") end
-    if noiseX == nil then error("noiseX == nil") end
-
-    return noiseVal, noiseX, noiseY
+    return cache.getByChunk(DOMAIN, generator, chunk)
 end
 
 function elevation.getByPos(pos)
