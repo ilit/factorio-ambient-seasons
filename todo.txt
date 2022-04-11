@@ -1,16 +1,4 @@
-CODE:
-) Cache By Pos, Not By Chunk!
-function elevation.getByChunk(chunk)
-routines.generateRaw(chunk, propName)
-
-) aux splitter
-
-) Don't bother with noise. Just save tiles to bk surface.
-Alien - Mundane
-Grass-1 - Grass-2
-Scorching - Normal
-
-) OR Use mainly my custom noises.
+) Use mainly my custom noises.
 AB Noises of use: TerrainType
 
 On Generated.
