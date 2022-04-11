@@ -17,14 +17,14 @@ function routines.generateRaw(chunk, propName)
     --if type(noiseVals[1]) ~= "number" then error("type(noiseVals[1]) ~= number") end
 
     local noiseValsAndPos = {}
+    -- TODO Dont loop noiseVals
+    local noiseVal={}
+    local noiseX={}
+    local noiseY={}
     for index,val in ipairs(noiseVals) do
-        local x = chunkPositions[index].x
-        local y = chunkPositions[index].y
-        --if type(x) ~= "number" then error("type(x) ~= number but "..type(x)) end
-        noiseValsAndPos[index] = {}
-        noiseValsAndPos[index].val = val
-        noiseValsAndPos[index].x = x
-        noiseValsAndPos[index].y = y
+        noiseVal[index] = val
+        noiseX[index] = chunkPositions[index].x
+        noiseY[index] = chunkPositions[index].y
     end
 
     --if table_size(noiseValsAndPos) < 100 then error("table_size(noiseValsToPos) == "..table_size(noiseValsAndPos)) end
@@ -32,26 +32,18 @@ function routines.generateRaw(chunk, propName)
     --if noiseValsAndPos[1].val == nil then error("noiseValsToPos[1].val == nil") end
     --if noiseValsAndPos[1].x == nil then error("noiseValsToPos[1].x == nil "..table_size(noiseValsAndPos)) end
 
-    return noiseValsAndPos
+    return noiseVal, noiseX, noiseY
 end
 
 -- Normalize to [0-1] scale
-function routines.normalize(rawNoiseValsToPos)
+function routines.normalize(noiseVal, noiseX, noiseY)
     local TOP_ELEVATION = 27
 
-    local ret = {}
-    for _, triplet in ipairs(rawNoiseValsToPos) do
-        local rawNoise = triplet.val
-        local capped = math.min(rawNoise, TOP_ELEVATION)
-        local normalized = capped / TOP_ELEVATION
-
-        ret[#ret +1] = {}
-        ret[#ret].val = normalized
-        ret[#ret].x = triplet.x
-        ret[#ret].y = triplet.y
+    for index,_ in ipairs(noiseVal) do
+        noiseVal[index] = math.min(noiseVal[index], TOP_ELEVATION) / TOP_ELEVATION
     end
 
-    return ret
+    return noiseVal, noiseX, noiseY
 end
 
 return routines

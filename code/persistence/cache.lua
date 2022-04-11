@@ -21,7 +21,16 @@ function cacheLocal.getByChunk(domain, generator, chunk)
     if not cacheLocal[domain] then cacheLocal[domain] = {} end
     if not cacheLocal[domain][x] then cacheLocal[domain][x] = {} end
     if not cacheLocal[domain][x][y] then
-        cacheLocal[domain][x][y] = generator(chunk)
+        -- TODO Continue optimization here
+        local noiseVal, noiseX, noiseY = generator(chunk)
+        local generatedCache = {}
+        for index, val in ipairs(noiseVal) do
+            generatedCache[#generatedCache + 1] = {}
+            generatedCache[#generatedCache].x = noiseX[index]
+            generatedCache[#generatedCache].y = noiseY[index]
+            generatedCache[#generatedCache].val = val
+        end
+        cacheLocal[domain][x][y] = generatedCache
         --game.print("Generating "..domain.." for "..chunk.x.." "..chunk.y)
     end
 
