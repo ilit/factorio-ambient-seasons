@@ -15,13 +15,16 @@ function cache.getByChunk(domain, generator, chunk)
     if chunk.x == nil then error("chunk is nil") end
     if chunk.area == nil then error("chunk.area == nil") end
 
-    local key = chunk.x .. "_" .. chunk.y
-    if not cache[domain][key] then
-        cache[domain][key] = generator(chunk)
+    local x = chunk.x
+    local y = chunk.y
+    if not cache[domain] then cache[domain] = {} end
+    if not cache[domain][x] then cache[domain][x] = {} end
+    if not cache[domain][x][y] then
+        cache[domain][x][y] = generator(chunk)
         game.print("Generating "..domain.." for "..chunk.x.." "..chunk.y)
     end
 
-    local chunkNoise = cache[domain][key]
+    local chunkNoise = cache[domain][x][y]
     if chunkNoise == nil then error("chunkNoise == nil") end
     if table_size(chunkNoise) < 100 then error("table_size(chunkNoise) == "..table_size(chunkNoise)) end
     if chunkNoise[1].x == nil then error("chunkNoise[1].x == nil "..table_size(chunkNoise)) end
