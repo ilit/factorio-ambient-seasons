@@ -7,7 +7,6 @@ return function(surface, chunkPos)
             chunkIter.y == chunkPos.y) then
             elevation.getByChunk(chunkIter)
             aux.getByChunk(chunkIter)
-            -- TODO More caches
         end
     end
 end

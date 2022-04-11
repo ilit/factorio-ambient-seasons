@@ -8,9 +8,6 @@ local registerEvents = function()
         tasksQueueExec()
     end)
 
-    -- TODO Generate original AB to bk-surface #on-access&&abscent && on chunk generated
-    -- + surface for player manual modifications - dirt over water && concrete
-
     script.on_event(defines.events.on_chunk_generated, function(event)
         if event.surface.index == 1 then
             pregenerateChunkCaches(event.surface, event.position)
