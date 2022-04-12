@@ -1,4 +1,4 @@
-return {
+local dec = {
     {
         "tree-09",
         "tree-09-brown",
@@ -97,3 +97,25 @@ return {
         "tree-grassland-f"
     },
 }
+
+--- Clear
+local entities = game.player.surface.find_entities_filtered{area = area, type = 'tree'}
+for _, e in pairs(entities) do
+    e.destroy()
+end
+
+--- Place trees aligned
+local xStart = area.left_top[1]
+local yStart = area.left_top[2]
+for groupI=1,#dec do
+    for treeJ=1,#dec[groupI] do
+        local treeName = dec[groupI][treeJ]
+        local y = yStart + groupI * 17
+        local x = xStart + treeJ * 13
+        for i=0,4 do
+            for j=0,4 do
+                game.player.surface.create_entity{name = treeName, position = {x = x+i*2, y = y+j*2}}
+            end
+        end
+    end
+end
