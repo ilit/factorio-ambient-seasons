@@ -4,7 +4,7 @@ for _, e in pairs(entities) do
     if e.name then
         e.tree_color_index = 1
         e.graphics_variation = 1
-        --e.tree_stage_index = 1
+        e.tree_stage_index = 4
         --e.tree_gray_stage_index = 1 -- 1 to 15
     end
 end
