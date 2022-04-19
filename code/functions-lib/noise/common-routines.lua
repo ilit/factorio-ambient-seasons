@@ -10,11 +10,12 @@ function routines.generateRaw(chunk, propName)
     local chunkPositions = chunkToPositions(chunk)
 
     local calcResults = game.surfaces.nauvis.calculate_tile_properties({ propName }, chunkPositions)
-    --if not calcResults then error("No noise results!") end
+    if not calcResults then error("No noise results!") end
 
     local noiseVals = calcResults[propName]
-    --if table_size(noiseVals) < 100 then error("table_size(noiseVals) < 100 "..table_size(noiseVals)) end
-    --if type(noiseVals[1]) ~= "number" then error("type(noiseVals[1]) ~= number") end
+    if not noiseVals then error("No noise results! for "..propName) end
+    if table_size(noiseVals) < 100 then error("table_size(noiseVals) < 100 "..table_size(noiseVals)) end
+    if type(noiseVals[1]) ~= "number" then error("type(noiseVals[1]) ~= number") end
 
     local noiseX={}
     local noiseY={}
