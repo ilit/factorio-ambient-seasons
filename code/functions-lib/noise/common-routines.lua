@@ -1,6 +1,7 @@
 local routines = {}
 
 local chunkToPositions = require "code/functions-lib/positions/chunk-to-positions"
+local constants = require "code/constants"
 
 -- Get raw noise values from noise generator
 function routines.generateRaw(chunk, propName)
@@ -37,10 +38,8 @@ end
 
 -- Normalize to [0-1] scale
 function routines.normalize(noiseVal, noiseX, noiseY)
-    local TOP_ELEVATION = 27
-
     for index,val in ipairs(noiseVal) do
-        noiseVal[index] = math.min(val, TOP_ELEVATION) / TOP_ELEVATION
+        noiseVal[index] = math.min(val, constants.TOP_ELEVATION) / constants.TOP_ELEVATION
     end
 
     return noiseVal, noiseX, noiseY
