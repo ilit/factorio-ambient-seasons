@@ -1,11 +1,11 @@
+--- Caches data per position. Stores by chunks.
+
 local Chunk = require('__stdlib__/stdlib/area/chunk')
 local Position = require('__stdlib__/stdlib/area/position')
 local getPosNoiseFromChunk = require "code/functions-lib/utils/get-pos-noise-from-chunk"
 
 if not g_chunkCache then
     g_chunkCache = {}
-    g_chunkCache.elevation = {}
-    g_chunkCache.aux = {}
 end
 
 function g_chunkCache.getByChunk(domain, generator, chunk)
@@ -15,16 +15,16 @@ function g_chunkCache.getByChunk(domain, generator, chunk)
     if chunk.x == nil then error("chunk is nil") end
     if chunk.area == nil then error("chunk.area == nil") end
 
-    local x = chunk.x
-    local y = chunk.y
+    local ch_x = chunk.x
+    local ch_y = chunk.y
     if not g_chunkCache[domain] then g_chunkCache[domain] = {} end
-    if not g_chunkCache[domain][x] then g_chunkCache[domain][x] = {} end
-    if not g_chunkCache[domain][x][y] then
+    if not g_chunkCache[domain][ch_x] then g_chunkCache[domain][ch_x] = {} end
+    if not g_chunkCache[domain][ch_x][ch_y] then
         local noiseVal, noiseX, noiseY = generator(chunk)
-        g_chunkCache[domain][x][y] = { noiseVal = noiseVal, noiseX = noiseX, noiseY = noiseY }
+        g_chunkCache[domain][ch_x][ch_y] = { noiseVal = noiseVal, noiseX = noiseX, noiseY = noiseY }
     end
 
-    local c = g_chunkCache[domain][x][y]
+    local c = g_chunkCache[domain][ch_x][ch_y]
 
     return c.noiseVal, c.noiseX, c.noiseY
 end
