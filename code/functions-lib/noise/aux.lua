@@ -1,7 +1,7 @@
 local aux = {}
 
 local routines = require "code/functions-lib/noise/common-routines"
-local cache = require "code/persistence/cache"
+local cache = require "code/persistence/chunk-cache"
 
 local DOMAIN = "aux"
 
