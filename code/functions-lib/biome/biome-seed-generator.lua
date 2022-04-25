@@ -39,29 +39,8 @@ return function(worldTilePos)
     --- Eval single nearest Voronoi cell
     local nearestSite = Position.closest(worldTilePos, nearestVoronoiSites)
 
-    if (math.abs(worldTilePos.x - nearestSite.x) < 2.1) and (math.abs(worldTilePos.y - nearestSite.y) < 2.1) then
-        return "vegetation-red-grass-2"
-    end
-
-    --for _,site in pairs(nearestVoronoiSites) do
-    --    if (math.abs(worldTilePos.x - site.x) < 1.1) and (math.abs(worldTilePos.y - site.y) < 1.1) then
-    --        return "vegetation-red-grass-2"
-    --    end
-    --end
-
     gameRnd.re_seed(nearestSite.x + nearestSite.y * 123456 + 111222000)
-    local r = gameRnd()
-    if (r > 0.9) then
-        return "vegetation-mauve-grass-2"
-    elseif(r > 0.8) then
-        return "vegetation-red-grass-2"
-    elseif(r > 0.6) then
-        return "vegetation-blue-grass-2"
-    elseif(r > 0.4) then
-        return "vegetation-yellow-grass-2"
-    elseif(r > 0.2) then
-        return "vegetation-violet-grass-2"
-    else
-        return "vegetation-purple-grass-2"
-    end
+    local randomBiomeSeedFloatValue = gameRnd()
+
+    return randomBiomeSeedFloatValue
 end

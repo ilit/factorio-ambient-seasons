@@ -3,7 +3,7 @@ local biomeSeed = {}
 local biomeSeedGenerator = require "code/functions-lib/biome/biome-seed-generator"
 local cache = require "code/persistence/chunk-cache"
 
-local DOMAIN = "biome-seed"
+local DOMAIN = "biomeSeed"
 
 local generator =
     function(chunk)
@@ -14,7 +14,10 @@ local generator =
         do
             for y = chunk.area.left_top.y, chunk.area.right_bottom.y
             do
-                noiseVals[#noiseVals+1] = biomeSeedGenerator({x=x,y=y})
+                local seed = biomeSeedGenerator({x=x,y=y})
+                if type(seed) ~= "number" then error("type(seed) ~= number is "..seed) end
+
+                noiseVals[#noiseVals+1] = seed
                 noiseX[#noiseX+1] = x
                 noiseY[#noiseY+1] = y
             end
