@@ -1,5 +1,5 @@
 local aux = require "code/functions-lib/noise/aux"
-local alienBiomeTilename_eval = require "code/functions-lib/noise/alien-biome-eval"
+local biomeSeed = require "code/functions-lib/noise/biome-seed"
 
 return function (time, xs, ys)
     local tiles = {}
@@ -13,7 +13,7 @@ return function (time, xs, ys)
         --    newTileName = "vegetation-olive-grass-2"
         --else
         --    --- Alien
-        newTileName = alienBiomeTilename_eval(pos)
+        newTileName = biomeSeed.getByPos(pos)
         --end
         table.insert(tiles, { name = newTileName, position = pos })
     end
