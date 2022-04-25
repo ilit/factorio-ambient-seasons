@@ -1,5 +1,5 @@
 local aux = require "code/functions-lib/noise/aux"
-local biomeSeed = require "code/functions-lib/noise/biome-seed"
+local biomeSeed = require "code/functions-lib/biome/biome-seed"
 
 return function (time, xs, ys)
     local tiles = {}

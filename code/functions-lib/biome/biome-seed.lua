@@ -1,11 +1,10 @@
 local biomeSeed = {}
 
-local biomeSeedGenerator = require "code/functions-lib/noise/biome-seed-generator"
+local biomeSeedGenerator = require "code/functions-lib/biome/biome-seed-generator"
 local cache = require "code/persistence/chunk-cache"
 
 local DOMAIN = "biome-seed"
 
--- TODO Move from Noise
 local generator =
     function(chunk)
         local noiseVals = {}
