@@ -15,7 +15,6 @@ local generator =
             for y = chunk.area.left_top.y, chunk.area.right_bottom.y
             do
                 local seed = biomeSeedGenerator({x=x,y=y})
-                if type(seed) ~= "number" then error("type(seed) ~= number is "..seed) end
 
                 noiseVals[#noiseVals+1] = seed
                 noiseX[#noiseX+1] = x

@@ -3,8 +3,6 @@ local biomeSeed = require "code/functions-lib/biome/biome-seed"
 return function(worldTilePos)
     local seed = biomeSeed.getByPos(worldTilePos)
 
-    if type(seed) ~= "number" then error("type(seed) ~= number is "..seed) end
-
     if (seed > 0.9) then
         return "vegetation-mauve-grass-2"
     elseif(seed > 0.8) then
