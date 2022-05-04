@@ -5,16 +5,17 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "linux": {}, -- TODO HERE
             "type": "factoriomod",
             "request": "launch",
             "name": "Factorio Mod Debug",
-            "factorioPath": "/home/ilit/.steam/debian-installation/steamapps/common/Factorio/bin/x64/"
+            "factorioPath": "/home/ilit/.steam/debian-installation/steamapps/common/Factorio/"
         },
         {
             "type": "factoriomod",
             "request": "launch",
             "name": "Factorio Mod Debug (Settings & Data)",
-            "factorioPath": "/home/ilit/.steam/debian-installation/steamapps/common/Factorio/bin/x64/",
+            "factorioPath": "/home/ilit/.steam/debian-installation/steamapps/common/Factorio/",
             "hookSettings": true,
             "hookData": true
         },
@@ -22,7 +23,7 @@
             "type": "factoriomod",
             "request": "launch",
             "name": "Factorio Mod Debug (Profile)",
-            "factorioPath": "/home/ilit/.steam/debian-installation/steamapps/common/Factorio/bin/x64/",
+            "factorioPath": "/home/ilit/.steam/debian-installation/steamapps/common/Factorio/",
             "hookMode": "profile"
         }
     ]
