@@ -5,8 +5,7 @@ return function()
     local time = {}
     time.isAtFirstTickOfAStep = steps.isAtFirstTickOfAStep()
     time.currentMonth = months.current()
-    time.monthLeftRelPart = months.leftPart()
-    time.monthRightRelPart = months.rightPart()
+    time.currentStepOfAMonth = steps.stepOfAMonth()
 
     return time
 end

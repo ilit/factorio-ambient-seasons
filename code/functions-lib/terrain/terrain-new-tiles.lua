@@ -1,21 +1,22 @@
-local aux = require "code/functions-lib/noise/aux"
-local alienTile = require "code/functions-lib/biome/alien-tile"
+local numToTile = require "code/functions-lib/biome/alien-biome-number-to-tilename"
+local biomes = require "code/persistence/biomes"
+local chunkToPositions = require "code/functions-lib/positions/chunk-to-positions-arrays"
 
-return function (time, xs, ys)
+return function (time, chunk)
     local tiles = {}
     local season = time.currentMonth % 2 + 1
+    local xs, ys = chunkToPositions(chunk)
 
     for i = 1, #xs do
-        local newTileName = ""
-        local pos = { x = xs[i], y = ys[i] }
-        --if aux.getByPos(pos) > 0.5 then
-        --    --- Mundane
-        --    newTileName = "vegetation-olive-grass-2"
-        --else
-        --    --- Alien
-        newTileName = alienTile(pos)
-        --end
-        table.insert(tiles, { name = newTileName, position = pos })
+        local x = xs[i]
+        local y = ys[i]
+        local biomeNumber = biomes.getNumberForStepAndCell(time.currentStepOfAMonth, x, y, chunk)
+
+        --- biomeNumber: 0 means this x,y tile is not for this step
+        if (biomeNumber ~= biomes.UNDEFINED) then
+            table.insert(tiles, { name = numToTile(biomeNumber),
+                                  position = {x=x,y=y} })
+        end
     end
 
     return tiles

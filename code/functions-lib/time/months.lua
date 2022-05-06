@@ -4,7 +4,7 @@ local constants = require "code/constants"
 local steps = require "code/functions-lib/time/steps"
 
 function months.playedFloat()
-    return steps.played() / constants.STEPS_IN_A_MONTH
+    return steps.totalPlayed() / constants.STEPS_IN_A_MONTH
 end
 
 function months.played()

@@ -1,6 +1,6 @@
 local seasonProgress = require "code/season-progress"
 local tasksQueueExec = require "code/procedures/tasks-execute"
-local pregenerateChunkCaches = require "code/procedures/pregenerate-chunk-caches"
+local saveChunkBiomes = require "code/procedures/save-chunk-biomes"
 
 local registerEvents = function()
     script.on_event(defines.events.on_tick, function(event)
@@ -8,17 +8,12 @@ local registerEvents = function()
         tasksQueueExec()
     end)
 
+    --- Not called for start area chunks
     script.on_event(defines.events.on_chunk_generated, function(event)
         if event.surface.index == 1 then
-            pregenerateChunkCaches(event.surface, event.position)
+            saveChunkBiomes(event.position)
         end
     end)
-
-    --script.on_event(defines.events.on_chunk_charted, function(event)
-    --    if (event.surface_index == 1) then
-    --        -- touchSeasoning
-    --    end
-    --end)
 end
 
 local init = function()
@@ -27,3 +22,5 @@ end
 
 script.on_init(init)
 script.on_load(init)
+
+if script.active_mods["gvv"] then require("__gvv__.gvv")() end
