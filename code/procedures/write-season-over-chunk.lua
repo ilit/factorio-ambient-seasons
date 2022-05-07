@@ -1,6 +1,7 @@
 local evalNewTerrainTiles = require "code/functions-lib/terrain/terrain-new-tiles"
 local biomes = require "code/persistence/biomes"
 local saveChunkBiomes = require "code/procedures/save-chunk-biomes"
+local surface = require "external/surface"
 
 return function(time, chunk)
     if chunk == nil then error("chunk == nil") end
@@ -20,5 +21,5 @@ return function(time, chunk)
 
     local newTiles = evalNewTerrainTiles(time, chunk)
 
-    game.surfaces.nauvis.set_tiles(newTiles)
+    surface.set_tiles(newTiles)
 end
