@@ -1,10 +1,11 @@
-local Chunk = require('__stdlib__/stdlib/area/chunk')
+if not stdLib then stdLib = require('external/stdlib-imports') end
+local Chunk = stdLib.chunk
 
 --- Arrays of structs
 
 return function(chunk)
-    if chunk.x == nil then error("chunk.x == nil") end
     if chunk.area == nil then
+        if chunk.x == nil then error("chunk.x == nil") end
         chunk.area = Chunk.to_area({x=chunk.x, y=chunk.y})
     end
     if chunk.area.left_top.x == nil then error("chunk.area == nil") end
