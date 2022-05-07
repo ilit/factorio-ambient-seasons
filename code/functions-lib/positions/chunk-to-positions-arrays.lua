@@ -1,4 +1,4 @@
---- Two Arrays of x and y
+--- return two Arrays of x and y
 
 return function(chunk)
     if chunk.area == nil then error("chunk.area == nil") end
