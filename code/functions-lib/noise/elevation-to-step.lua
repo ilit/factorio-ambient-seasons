@@ -12,5 +12,7 @@ return function(elevationValue)
 
     if step < 1 then error("step < 1 for elevationValue "..elevationValue) end
 
+    step = math.min(step, constants.STEPS_IN_A_MONTH)
+
     return step
 end
