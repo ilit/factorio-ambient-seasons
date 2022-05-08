@@ -4,28 +4,31 @@ local biomeCacheRead = require "code/functions-lib/biome/biome-cache-read"
 local purgeBiomes = require "test/util/biomes-purge"
 
 local biomeCacheReadTest = {}
-local BIOME = -123;
 
 function biomeCacheReadTest:setup()
     purgeBiomes()
 end
 
-function biomeCacheReadTest:testSingleInsertion()
+function biomeCacheReadTest:testTwoChunks()
     local step = 3
     local chunk1 = {x=20,y=30}
     local chunk2 = {x=40,y=50}
-    biomeSaveCell(1,2,step,BIOME)
+    biomeSaveCell(1,2,step,1212)
     biomeSaveChunk(step, chunk1)
-    biomeSaveCell(1,3,step,BIOME)
-    biomeSaveCell(1,4,step,BIOME)
+    biomeSaveCell(1,3,step,1313)
+    biomeSaveCell(1,4,step,1414)
 
-    biomeSaveCell(1,222,step,BIOME)
+    biomeSaveCell(1,222,step,1515)
     biomeSaveChunk(step, chunk2)
-    biomeSaveCell(2,222,step,BIOME)
-    biomeSaveCell(3,222,step,BIOME)
+    biomeSaveCell(2,222,step,1616)
+    biomeSaveCell(3,222,step,1717)
 
     assertEquals(biomeCacheRead.indexOfAChunk(step, chunk1), 1)
     assertEquals(biomeCacheRead.indexOfAChunk(step, chunk2), 4)
+
+    assertEquals(biomeCacheRead.getNumberForStepAndCell(step, 1, 2,chunk1), 1212)
+    assertEquals(biomeCacheRead.getNumberForStepAndCell(step, 1, 4,chunk1), 1414)
+    assertEquals(biomeCacheRead.getNumberForStepAndCell(step, 3, 222,chunk1), 1717)
 end
 
 return biomeCacheReadTest
