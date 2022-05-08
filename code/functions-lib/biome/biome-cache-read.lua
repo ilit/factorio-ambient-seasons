@@ -7,19 +7,13 @@ function biomes.getNumberForStepAndCell(step, x, y, chunk)
 
     local startingIndex = biomes.indexOfAChunk(step, chunk)
 
-    for i=startingIndex,biomes.cellsLength(step) do
+    for i=startingIndex,#biomes[step]["xs"] do
         if (biomes[step]["xs"][i] == x and
                 biomes[step]["ys"][i] == y) then
             return biomes[step]["biomes"][i]
         end
     end
     error("cell "..x.." "..y.." not found for chunk "..chunk.x.." "..chunk.y)
-end
-
-function biomes.cellsLength(step)
-    if not step then error("not step") end
-
-    return #biomes[step]["xs"]
 end
 
 function biomes.indexOfAChunk(step, chunk)

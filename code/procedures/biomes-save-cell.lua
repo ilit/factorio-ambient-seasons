@@ -1,4 +1,4 @@
-local biomes = require "code/persistence/biomesCache"
+local biomes = require "code/persistence/biomes-cache"
 
 return function (x, y, step, biome)
     if not x then error("not x") end
