@@ -3,7 +3,7 @@ local tasksQueueExec = require "code/procedures/tasks-execute"
 local saveChunkBiomes = require "code/procedures/save-chunk-biomes"
 
 local registerEvents = function()
-    script.on_event(defines.events.on_tick, function(event)
+    script.on_event(defines.events.on_tick, function(_)
         seasonProgress()
         tasksQueueExec()
     end)

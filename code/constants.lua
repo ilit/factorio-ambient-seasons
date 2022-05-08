@@ -7,4 +7,7 @@ constants.CHUNKS_PROCESSED_PER_TICK = 1
 constants.TOP_ELEVATION = 30
 constants.VORONOI_FRAME_SIZE = 130
 
+
+constants.CHUNK_NOT_FOUND = -1
+
 return constants

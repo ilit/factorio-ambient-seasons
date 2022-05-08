@@ -1,9 +1,4 @@
-if not biomes then
-    biomes = {}
-    biomes.UNDEFINED = 0
-    biomes.CHUNK_NOT_FOUND = -1
-    biomes.STEP_NOT_FOUND = -1
-end
+local constants = require "code/constants"
 
 function biomes.getNumberForStepAndCell(step, x, y, chunk)
     if (biomes[step] == nil) then
@@ -14,7 +9,7 @@ function biomes.getNumberForStepAndCell(step, x, y, chunk)
 
     for i=startingIndex,biomes.cellsLength(step) do
         if (biomes[step]["xs"][i] == x and
-            biomes[step]["ys"][i] == y) then
+                biomes[step]["ys"][i] == y) then
             return biomes[step]["biomes"][i]
         end
     end
@@ -29,19 +24,17 @@ end
 
 function biomes.indexOfAChunk(step, chunk)
     if not step then error("not step") end
-    if not biomes[step] then return biomes.STEP_NOT_FOUND end
+    if not biomes[step] then return constants.CHUNK_NOT_FOUND end
 
     local len = #biomes[step]["chxs"]
 
-    if len == 0 then return biomes.CHUNK_NOT_FOUND end
+    if len == 0 then return constants.CHUNK_NOT_FOUND end
 
     for i=1,len do
         if (biomes[step]["chxs"][i] == chunk.x and
-            biomes[step]["chys"][i] == chunk.y) then
+                biomes[step]["chys"][i] == chunk.y) then
             return biomes[step]["index"][i]
         end
     end
-    return biomes.CHUNK_NOT_FOUND
+    return constants.CHUNK_NOT_FOUND
 end
-
-return biomes

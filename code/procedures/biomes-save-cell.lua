@@ -1,4 +1,4 @@
-local biomes = require "code/persistence/biomes"
+local biomes = require "code/persistence/biomesCache"
 
 return function (x, y, step, biome)
     if not x then error("not x") end
@@ -9,6 +9,13 @@ return function (x, y, step, biome)
     if not biomes[step]["xs"] then biomes[step]["xs"] = {} end
     if not biomes[step]["ys"] then biomes[step]["ys"] = {} end
     if not biomes[step]["biomes"] then biomes[step]["biomes"] = {} end
+
+    for i, _ in ipairs(biomes[step]["xs"]) do
+        if (biomes[step]["xs"][i] == x and
+            biomes[step]["ys"][i] == y) then
+            error("Position is already present in cache")
+        end
+    end
 
     table.insert(biomes[step]["xs"], x)
     table.insert(biomes[step]["ys"], y)
