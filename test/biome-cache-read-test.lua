@@ -26,9 +26,15 @@ function biomeCacheReadTest:testTwoChunks()
     assertEquals(biomeCacheRead.indexOfAChunk(step, chunk1), 1)
     assertEquals(biomeCacheRead.indexOfAChunk(step, chunk2), 4)
 
+    --- Everything should be found starting from index of chunk1
     assertEquals(biomeCacheRead.getNumberForStepAndCell(step, 1, 2,chunk1), 1212)
     assertEquals(biomeCacheRead.getNumberForStepAndCell(step, 1, 4,chunk1), 1414)
     assertEquals(biomeCacheRead.getNumberForStepAndCell(step, 3, 222,chunk1), 1717)
+
+    --- Only latest cells should be found starting from index of chunk2
+    assertError(function() biomeCacheRead.getNumberForStepAndCell(step, 1, 2,chunk2) end)
+    assertError(function() biomeCacheRead.getNumberForStepAndCell(step, 1, 4,chunk2) end)
+    assertEquals(biomeCacheRead.getNumberForStepAndCell(step, 3, 222,chunk2), 1717)
 end
 
 return biomeCacheReadTest
