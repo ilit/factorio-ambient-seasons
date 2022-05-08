@@ -2,6 +2,7 @@ local biomeSaveCell = require "code/procedures/biomes-save-cell"
 local biomeSaveChunk = require "code/procedures/biomes-save-chunk-index"
 local biomeCacheRead = require "code/functions-lib/biome/biome-cache-read"
 local purgeBiomes = require "test/util/biomes-purge"
+local constants = require "code/constants"
 
 local biomeCacheReadTest = {}
 
@@ -35,6 +36,17 @@ function biomeCacheReadTest:testTwoChunks()
     assertError(function() biomeCacheRead.getNumberForStepAndCell(step, 1, 2,chunk2) end)
     assertError(function() biomeCacheRead.getNumberForStepAndCell(step, 1, 4,chunk2) end)
     assertEquals(biomeCacheRead.getNumberForStepAndCell(step, 3, 222,chunk2), 1717)
+end
+
+function biomeCacheReadTest:testChunkNotFound()
+    local step = 3
+    local chunk1 = {x=20,y=30}
+    local chunk2 = {x=40,y=50}
+    biomeSaveCell(1,2,step,1212)
+    biomeSaveChunk(step, chunk1)
+
+    assertEquals(biomeCacheRead.indexOfAChunk(step, chunk1), 1)
+    assertEquals(biomeCacheRead.indexOfAChunk(step, chunk2), constants.CHUNK_NOT_FOUND)
 end
 
 return biomeCacheReadTest
