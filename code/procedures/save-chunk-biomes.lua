@@ -3,11 +3,11 @@ local elevationToStep = require "code/functions-lib/noise/elevation-to-step"
 local biomeEvalForCell = require "code/functions-lib/biome/biome-number-eval-for-cell"
 local biomesSaveCell = require "code/procedures/biomes-save-cell"
 local biomesSaveChunkIndex = require "code/procedures/biomes-save-chunk-index"
-local surface = require "external/surface"
+local getSurface = require "external/surface"
 
 return function(chunkPos)
     local chunkPositions = chunkToPositions(chunkPos)
-    local calcResults = surface.calculate_tile_properties({"elevation", "aux"}, chunkPositions)
+    local calcResults = getSurface().calculate_tile_properties({ "elevation", "aux"}, chunkPositions)
     local elevations = calcResults["elevation"]
     local auxes = calcResults["aux"]
 

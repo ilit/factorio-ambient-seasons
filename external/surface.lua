@@ -1,2 +1,1 @@
-if not surface then surface = game.surfaces.nauvis end
-return surface
+return function() return game.surfaces.nauvis end
