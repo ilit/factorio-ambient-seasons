@@ -2,10 +2,10 @@ local biomeSaveCell = require "code/procedures/biomes-save-cell"
 local biomeSaveChunk = require "code/procedures/biomes-save-chunk-index"
 local purgeBiomes = require "test/util/biomes-purge"
 
-local biomeSaveChunkTest = {}
+local biomeCacheReadTest = {}
 local BIOME = -123;
 
-function biomeSaveChunkTest:setup()
+function biomeCacheReadTest:setup()
     purgeBiomes()
 end
 
@@ -17,7 +17,7 @@ local function size(t)
     return count
 end
 
-function biomeSaveChunkTest:testSingleInsertion()
+function biomeCacheReadTest:testSingleInsertion()
     assertEquals(size(biomes), 0)
     --- (x, y, step, biome)
     local step = 3
@@ -30,7 +30,7 @@ function biomeSaveChunkTest:testSingleInsertion()
     assertEquals(biomes[step]["index"], {1})
 end
 
-function biomeSaveChunkTest:testIndexShouldNotUpdateOnMoreCellInsertions()
+function biomeCacheReadTest:testIndexShouldNotUpdateOnMoreCellInsertions()
     assertEquals(size(biomes), 0)
     --- (x, y, step, biome)
     local step = 3
@@ -48,7 +48,7 @@ function biomeSaveChunkTest:testIndexShouldNotUpdateOnMoreCellInsertions()
     assertEquals(biomes[step]["index"], {1})
 end
 
-function biomeSaveChunkTest:testTwoChunks()
+function biomeCacheReadTest:testTwoChunks()
     assertEquals(size(biomes), 0)
     --- (x, y, step, biome)
     local step = 3
@@ -73,4 +73,4 @@ function biomeSaveChunkTest:testTwoChunks()
     assertEquals(biomes[step]["index"][2], 3) --- Chunk 1 points to index 3
 end
 
-return biomeSaveChunkTest
+return biomeCacheReadTest

@@ -1,12 +1,10 @@
 local biomeSaveCell = require "code/procedures/biomes-save-cell"
+local purgeBiomes = require "test/util/biomes-purge"
 
 local biomeSaveCellTest = {}
 
 function biomeSaveCellTest:setup()
-    --- Clear table without dereferencing
-    for k,_ in pairs(biomes) do
-        biomes[k] = nil
-    end
+    purgeBiomes()
 end
 
 local function size(t)
