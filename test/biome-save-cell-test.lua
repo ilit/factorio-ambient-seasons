@@ -1,18 +1,11 @@
 local biomeSaveCell = require "code/procedures/biomes-save-cell"
 local purgeBiomes = require "test/util/biomes-purge"
+local size = require "test/util/table-size"
 
 local biomeSaveCellTest = {}
 
 function biomeSaveCellTest:setup()
     purgeBiomes()
-end
-
-local function size(t)
-    local count = 0
-    for k,v in pairs(t) do
-        count = count + 1
-    end
-    return count
 end
 
 function biomeSaveCellTest:testSingleInsertion()

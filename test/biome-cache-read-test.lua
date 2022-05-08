@@ -1,20 +1,13 @@
 local biomeSaveCell = require "code/procedures/biomes-save-cell"
 local biomeSaveChunk = require "code/procedures/biomes-save-chunk-index"
 local purgeBiomes = require "test/util/biomes-purge"
+local size = require "test/util/table-size"
 
 local biomeCacheReadTest = {}
 local BIOME = -123;
 
 function biomeCacheReadTest:setup()
     purgeBiomes()
-end
-
-local function size(t)
-    local count = 0
-    for k,v in pairs(t) do
-        count = count + 1
-    end
-    return count
 end
 
 function biomeCacheReadTest:testSingleInsertion()
