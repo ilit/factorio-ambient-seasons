@@ -1,11 +1,14 @@
+local biomes = require "code/persistence/biomes-cache"
 local constants = require "code/constants"
 
-function biomes.getNumberForStepAndCell(step, x, y, chunk)
+local this = {}
+
+function this.getNumberForStepAndCell(step, x, y, chunk)
     if (biomes[step] == nil) then
-        error("biomes[step] == nil table_size(biomes) is "..table_size(biomes))
+        error("biomes[step] == nil")
     end
 
-    local startingIndex = biomes.indexOfAChunk(step, chunk)
+    local startingIndex = this.indexOfAChunk(step, chunk)
 
     for i=startingIndex,#biomes[step]["xs"] do
         if (biomes[step]["xs"][i] == x and
@@ -16,7 +19,7 @@ function biomes.getNumberForStepAndCell(step, x, y, chunk)
     error("cell "..x.." "..y.." not found for chunk "..chunk.x.." "..chunk.y)
 end
 
-function biomes.indexOfAChunk(step, chunk)
+function this.indexOfAChunk(step, chunk)
     if not step then error("not step") end
     if not biomes[step] then return constants.CHUNK_NOT_FOUND end
 
@@ -32,3 +35,5 @@ function biomes.indexOfAChunk(step, chunk)
     end
     return constants.CHUNK_NOT_FOUND
 end
+
+return this

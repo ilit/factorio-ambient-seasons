@@ -7,6 +7,7 @@ TestChunkPositionsTwoArrays = require("test/chunk-to-positions-xs-xy-test")
 TestChunkPositionsFactorio = require("test/chunk-to-positions-factorio-test")
 TestBiomeSaveCell = require("test/biome-save-cell-test")
 TestBiomeSaveChunk = require("test/biome-save-chunk-index-test")
+TestBiomeCacheRead = require("test/biome-cache-read-test")
 
 --- Bigger tests
 
