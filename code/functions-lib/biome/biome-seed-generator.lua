@@ -1,6 +1,8 @@
 local worldPosToVoronoiFrame = require "code/functions-lib/positions/world-pos-to-voronoi-frame"
 local constants = require "code/constants"
-local Position = require('__stdlib__/stdlib/area/position')
+
+if not stdLib then stdLib = require('external/stdlib-imports') end
+local Position = stdLib.position
 
 local gameRnd
 
