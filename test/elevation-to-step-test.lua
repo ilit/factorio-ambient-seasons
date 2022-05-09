@@ -1,11 +1,11 @@
+constants = {}
+constants.TOP_ELEVATION = 30
+constants.STEPS_IN_A_MONTH = 4
 local elevationToStep = require "code/functions-lib/noise/elevation-to-step"
 
 local elevStep = {}
 
 function elevStep:setup()
-    constants = {}
-    constants.TOP_ELEVATION = 40
-    constants.STEPS_IN_A_MONTH = 4
 end
 
 function elevStep:teardown()
