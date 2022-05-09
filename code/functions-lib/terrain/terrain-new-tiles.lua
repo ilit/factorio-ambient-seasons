@@ -1,5 +1,5 @@
 local numToTile = require "code/functions-lib/biome/alien-biome-number-to-tilename"
-local biomes = require "code/persistence/biomes"
+local biomes = require "code/functions-lib/biome/biome-cache-read"
 local chunkToPositions = require "code/functions-lib/positions/chunk-to-positions-arrays"
 
 return function (time, chunk)
