@@ -1,6 +1,7 @@
 local numToTile = require "code/functions-lib/biome/alien-biome-number-to-tilename"
 local biomes = require "code/functions-lib/biome/biome-cache-read"
 local chunkToPositions = require "code/functions-lib/positions/chunk-to-positions-arrays"
+local constants = require "code/constants"
 
 return function (time, chunk)
     local tiles = {}
@@ -13,7 +14,7 @@ return function (time, chunk)
         local biomeNumber = biomes.getNumberForStepAndCell(time.currentStepOfAMonth, x, y, chunk)
 
         --- biomeNumber: 0 means this x,y tile is not for this step
-        if (biomeNumber ~= biomes.UNDEFINED) then
+        if (biomeNumber ~= constants.UNDEFINED_BIOME) then
             table.insert(tiles, { name = numToTile(biomeNumber),
                                   position = {x=x,y=y} })
         end

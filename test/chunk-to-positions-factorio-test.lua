@@ -10,8 +10,8 @@ function chPos:testPos()
     chunk.area.left_top.x = 1
     chunk.area.left_top.y = 1
     chunk.area.right_bottom = {}
-    chunk.area.right_bottom.x = 3
-    chunk.area.right_bottom.y = 3
+    chunk.area.right_bottom.x = 4
+    chunk.area.right_bottom.y = 4
 
     local positions = chunkToPos(chunk)
     assertEquals(positions, {

@@ -13,10 +13,11 @@ function this.getNumberForStepAndCell(step, x, y, chunk)
     for i=startingIndex,#biomes[step]["xs"] do
         if (biomes[step]["xs"][i] == x and
                 biomes[step]["ys"][i] == y) then
-            return biomes[step]["biomes"][i]
+            return biomes[step]["biomesNum"][i]
         end
     end
-    error("cell "..x.." "..y.." not found for chunk "..chunk.x.." "..chunk.y)
+
+    return constants.UNDEFINED_BIOME
 end
 
 function this.indexOfAChunk(step, chunk)

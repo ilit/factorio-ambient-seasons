@@ -8,7 +8,7 @@ return function (x, y, step, biome)
     if not biomes[step] then biomes[step] = {} end
     if not biomes[step]["xs"] then biomes[step]["xs"] = {} end
     if not biomes[step]["ys"] then biomes[step]["ys"] = {} end
-    if not biomes[step]["biomes"] then biomes[step]["biomes"] = {} end
+    if not biomes[step]["biomesNum"] then biomes[step]["biomesNum"] = {} end
 
     for i, _ in ipairs(biomes[step]["xs"]) do
         if (biomes[step]["xs"][i] == x and
@@ -19,5 +19,5 @@ return function (x, y, step, biome)
 
     table.insert(biomes[step]["xs"], x)
     table.insert(biomes[step]["ys"], y)
-    table.insert(biomes[step]["biomes"], biome)
+    table.insert(biomes[step]["biomesNum"], biome)
 end
