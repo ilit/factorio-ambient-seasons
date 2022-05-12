@@ -10,10 +10,10 @@ function this.getNumberForStepAndCell(step, x, y, chunk)
 
     local startingIndex = this.indexOfAChunk(step, chunk)
 
-    for i=startingIndex,#biomes[step]["xs"] do
-        if (biomes[step]["xs"][i] == x and
-                biomes[step]["ys"][i] == y) then
-            return biomes[step]["biomesNum"][i]
+    for i=startingIndex,#biomes[step].xs do
+        if (biomes[step].xs[i] == x and
+                biomes[step].ys[i] == y) then
+            return biomes[step].biomesNum[i]
         end
     end
 
@@ -24,14 +24,14 @@ function this.indexOfAChunk(step, chunk)
     if not step then error("not step") end
     if not biomes[step] then return constants.CHUNK_NOT_FOUND end
 
-    local len = #biomes[step]["chxs"]
+    local len = #biomes[step].chxs
 
     if len == 0 then return constants.CHUNK_NOT_FOUND end
 
     for i=1,len do
-        if (biomes[step]["chxs"][i] == chunk.x and
-                biomes[step]["chys"][i] == chunk.y) then
-            return biomes[step]["index"][i]
+        if (biomes[step].chxs[i] == chunk.x and
+                biomes[step].chys[i] == chunk.y) then
+            return biomes[step].index[i]
         end
     end
     return constants.CHUNK_NOT_FOUND
