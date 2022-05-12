@@ -13,7 +13,7 @@ function biomeSaveCellTest:testSingleInsertion()
     --- (x, y, step, biome)
     biomesSaveCell(1,2,3,4)
     assertEquals(size(biomes), 1)
-    assertEquals(biomes, {[3]={biomes={4}, xs={1}, ys={2}}})
+    assertEquals(biomes, {[3]={biomesNum={4}, xs={1}, ys={2}}})
 end
 
 function biomeSaveCellTest:testTwoDifferentSteps()
@@ -22,7 +22,7 @@ function biomeSaveCellTest:testTwoDifferentSteps()
     biomesSaveCell(1,2,3,4)
     biomesSaveCell(5,6,7,8)
     assertEquals(size(biomes), 2)
-    assertEquals(biomes, {[3]={biomes={4}, xs={1}, ys={2}}, [7]={biomes={8}, xs={5}, ys={6}}})
+    assertEquals(biomes, {[3]={biomesNum={4}, xs={1}, ys={2}}, [7]={biomesNum={8}, xs={5}, ys={6}}})
 end
 
 function biomeSaveCellTest:testDeniIdenticalPositions()
@@ -46,7 +46,7 @@ function biomeSaveCellTest:testTwoPositionsForOneStep()
     biomesSaveCell(1,2,3,4)
     biomesSaveCell(1,3,3,8)
     assertEquals(size(biomes), 1)
-    assertEquals(biomes, {[3]={biomes={4, 8}, xs={1, 1}, ys={2, 3}}})
+    assertEquals(biomes, {[3]={biomesNum={4, 8}, xs={1, 1}, ys={2, 3}}})
 end
 
 function biomeSaveCellTest:testManyInsertions()
@@ -72,8 +72,8 @@ function biomeSaveCellTest:testManyInsertions()
     assertEquals(size(biomes), 2)
     assertEquals(biomes,
     {
-        [11]={biomes={0, 0, 0, 0, 0, 0}, xs={1, 1, 1, 1, 1, 1}, ys={2, 3, 4, 8, 9, 10}},
-        [22]={biomes={0, 0, 0, 0, 0, 0}, xs={1, 1, 1, 1, 1, 1}, ys={5, 6, 7, 11, 12, 13}}
+        [11]={biomesNum={0, 0, 0, 0, 0, 0}, xs={1, 1, 1, 1, 1, 1}, ys={2, 3, 4, 8, 9, 10}},
+        [22]={biomesNum={0, 0, 0, 0, 0, 0}, xs={1, 1, 1, 1, 1, 1}, ys={5, 6, 7, 11, 12, 13}}
     })
 end
 

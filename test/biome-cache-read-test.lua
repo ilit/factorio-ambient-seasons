@@ -33,8 +33,8 @@ function biomeCacheReadTest:testTwoChunks()
     assertEquals(biomeCacheRead.getNumberForStepAndCell(step, 3, 222,chunk1), 1717)
 
     --- Only latest cells should be found starting from index of chunk2
-    assertError(function() biomeCacheRead.getNumberForStepAndCell(step, 1, 2,chunk2) end)
-    assertError(function() biomeCacheRead.getNumberForStepAndCell(step, 1, 4,chunk2) end)
+    assertEquals(biomeCacheRead.getNumberForStepAndCell(step, 1, 2,chunk2), constants.UNDEFINED_BIOME)
+    assertEquals(biomeCacheRead.getNumberForStepAndCell(step, 1, 4,chunk2), constants.UNDEFINED_BIOME)
     assertEquals(biomeCacheRead.getNumberForStepAndCell(step, 3, 222,chunk2), 1717)
 end
 
