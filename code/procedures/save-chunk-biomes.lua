@@ -5,43 +5,31 @@ local biomesSaveCell = require "code/procedures/biomes-save-cell"
 local biomesSaveChunkIndex = require "code/procedures/biomes-save-chunk-index"
 local getSurface = require "external/surface"
 
-local prof1
-local prof2
-local profilersCreated = false
-
 return function(chunkPos)
-    if game then
-        if not profilersCreated then
-            prof1 = game.create_profiler(true)
-            prof2 = game.create_profiler(true)
-            profilersCreated = true
-        end
-        -- TODO Here. Not printing
-        if game.ticks_played > 20 then error("##### "..prof1.." "..prof2) end
-    end
-
-    prof1.restart()
     local chunkPositions = chunkToPositions(chunkPos)
     local calcResults = getSurface().calculate_tile_properties({ "elevation", "aux"}, chunkPositions)
     local elevations = calcResults["elevation"]
     local auxes = calcResults["aux"]
-    prof1.stop()
+    --- 1ms
 
-    prof2.restart()
+    local prof1 = game.create_profiler(true)
     --- Save cell data
     for i=1,#elevations do
         local x = chunkPositions[i].x
         local y = chunkPositions[i].y
-        local step = elevationToStep(elevations[i])
+
+        local step = elevationToStep(elevations[i]) --- 0.7ms
         local aux = auxes[i]
-        local biome = biomeEvalForCell(x, y, aux)
+
+        local biome = biomeEvalForCell(x, y, aux) --- 16ms
+
 
         if not biome then error("not biome") end
 
-        biomesSaveCell(x, y, step, biome)
-
+        biomesSaveCell(x, y, step, biome, prof1) --- 38ms
         --- Save chunk->index data
-        biomesSaveChunkIndex(step, chunkPos)
-    end
-    prof2.stop()
+        biomesSaveChunkIndex(step, chunkPos) --- 0.8ms
+    end --- 60ms all loops combined for a chunk
+
+    error(prof1)
 end

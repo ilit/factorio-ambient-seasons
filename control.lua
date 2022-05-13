@@ -10,7 +10,7 @@ local registerEvents = function()
 
     --- Not called for start area chunks
     script.on_event(defines.events.on_chunk_generated, function(event)
-        if event.surface.index == 1 then
+        if event.surface.index == 1 and game then
             saveChunkBiomes(event.position)
         end
     end)
