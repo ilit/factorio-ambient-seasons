@@ -6,4 +6,4 @@ Implemented snow tiles appear over and dissappear over time starting from highes
 
 Implemented Voronoi tesselation of game surface to make any amount of alien biomes with procedurally generated color combinations for tiles, decorations and trees.
 
-![This is an image](https://github.com/ilit/factorio-ambient-seasons/Voronoi.jpg)
+![This is an image](https://github.com/ilit/factorio-ambient-seasons/blob/main/Voronoi.jpg)
