@@ -10,26 +10,22 @@ return function(chunkPos)
     local calcResults = getSurface().calculate_tile_properties({ "elevation", "aux"}, chunkPositions)
     local elevations = calcResults["elevation"]
     local auxes = calcResults["aux"]
-    --- 1ms
 
-    local prof1 = game.create_profiler(true)
     --- Save cell data
     for i=1,#elevations do
         local x = chunkPositions[i].x
         local y = chunkPositions[i].y
 
-        local step = elevationToStep(elevations[i]) --- 0.7ms
+        local step = elevationToStep(elevations[i])
         local aux = auxes[i]
 
-        local biome = biomeEvalForCell(x, y, aux) --- 16ms
+        local biome = biomeEvalForCell(x, y, aux)
 
 
         if not biome then error("not biome") end
 
-        biomesSaveCell(x, y, step, biome, prof1) --- 38ms
+        biomesSaveCell(x, y, step, biome)
         --- Save chunk->index data
-        biomesSaveChunkIndex(step, chunkPos) --- 0.8ms
-    end --- 60ms all loops combined for a chunk
-
-    error(prof1)
+        biomesSaveChunkIndex(step, chunkPos)
+    end
 end

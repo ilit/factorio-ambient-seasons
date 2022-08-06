@@ -6,9 +6,8 @@ return function()
     for _=1,constants.CHUNKS_PROCESSED_PER_TICK do
         if not taskQueue:is_empty() then
             local task = taskQueue:pop_left()
-            local chunk = task.chunk
 
-            writeSeasonOverChunk(task.time, chunk)
+            writeSeasonOverChunk(task.time, task.chunk)
         end
     end
 

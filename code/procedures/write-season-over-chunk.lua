@@ -10,8 +10,8 @@ return function(time, chunk)
     local step = time.currentStepOfAMonth
     local cacheIndex = biomeCacheRead.indexOfAChunk(step, chunk)
 
-    if (cacheIndex == constants.CHUNK_NOT_FOUND) then return end
-
-    local newTiles = evalNewTerrainTiles(time, chunk)
-    getSurface().set_tiles(newTiles)
+    if (cacheIndex ~= constants.CHUNK_NOT_FOUND) then
+        local newTiles = evalNewTerrainTiles(time, chunk)
+        getSurface().set_tiles(newTiles)
+    end
 end
