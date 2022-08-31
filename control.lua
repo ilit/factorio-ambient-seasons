@@ -12,9 +12,10 @@ local registerEvents = function()
     --saveChunkBiomes({x = 0, y = 0})
     --saveChunkBiomes({x = 1, y = 1})
     -- TODO Why this fails?!!
+    -- TODO Probably NOT ReADY
     for xi=0,4,1 do
         for yi=0,4,1 do
-            saveChunkBiomes({x = xi, y = yi})
+            --saveChunkBiomes({x = xi, y = yi})
         end
     end
 end
